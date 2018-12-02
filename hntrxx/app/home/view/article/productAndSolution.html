@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  {include file="base/head" title="$companyInfo.f_company_name"/}
+  <link rel="stylesheet" href="/static/home/css/article.css">
+</head>
+
+<body>
+  <!--[if lt IE 9]-->
+  <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
+  <script src="/static/common/js/respond.min.js"></script>
+  <![endif]-->
+  <div class="header">
+      <div class="layui-row page-width">
+          <label id="menu-toggle" for="menu-checkbox"><b>导航栏</b></label>
+          <input id="menu-checkbox" type="checkbox" name="menu">
+          <div class="layui-col-xs12 layui-col-sm2 logo-container">
+              <a href="/"><img src="/static/home/img/logo.png" alt="logo"></a>
+          </div>
+          <ul class="layui-nav my-bg-blue layui-col-xs12 layui-col-sm10" id="nav" lay-filter="">
+              <li class="layui-nav-item"><a href="/">首页</a></li>
+              <li class="layui-nav-item">
+                  <a class="nav-item" href="article.html?m=8">关于天瑞</a>
+                  <dl class="layui-nav-child"> <!-- 二级菜单 -->
+                      <dd><a href="article.html?m=8">企业简介</a></dd>
+                      <dd><a href="article.html?m=9">文化理念</a></dd>
+                      <dd><a href="article.html?m=10">组织架构</a></dd>
+                      <dd><a href="articleFile.html?m=11">企业资质</a></dd>
+                      <dd><a href="articleFile.html?m=12">企业荣誉</a></dd>
+                      <dd><a href="article.html?m=37">公司业绩</a></dd>
+                  </dl>
+              </li>
+              <li class="layui-nav-item">
+                  <a class="nav-item" href="newsAll.html">新闻中心</a>
+                  <dl class="layui-nav-child"> <!-- 二级菜单 -->
+                      <dd><a href="news.html?m=13">企业动态</a></dd>
+                      <dd><a href="news.html?m=14">行业资讯</a></dd>
+                  </dl>
+              </li>
+              <li class="layui-nav-item">
+                  <a class="nav-item" href="article.html?m=15">业务介绍</a>
+                  <dl class="layui-nav-child"> <!-- 二级菜单 -->
+                      <dd><a href="article.html?m=15">系统集成</a></dd>
+                      <dd><a href="article.html?m=16">软件方案</a></dd>
+                      <dd><a href="article.html?m=17">网络优化</a></dd>
+                      <dd><a href="article.html?m=18">维护业务</a></dd>
+                      <dd><a href="article.html?m=19">核心网工程</a></dd>
+                      <dd><a href="article.html?m=20">无线工程</a></dd>
+                      <dd><a href="article.html?m=21">传输工程</a></dd>
+                      <dd><a href="article.html?m=22">驻地网工程</a></dd>
+                      <dd><a href="article.html?m=23">室分工程</a></dd>
+                  </dl>
+              </li>
+              <li class="layui-nav-item layui-this">
+                  <a class="nav-item" href="productAndSolution.html">产品及解决方案</a>
+                  <dl class="layui-nav-child"> <!-- 二级菜单 -->
+                      <dd><a href="article.html?m=24">分布式存储/产品 </a></dd>
+                      <dd><a href="article.html?m=25">Isecgate安全接入网关/产品</a></dd>
+                      <!--<dd><a href="article.html?m=26">网关/产品</a></dd>-->
+                      <dd><a href="article.html?m=27">智慧工地</a></dd>
+                      <dd><a href="article.html?m=28">智慧食药</a></dd>
+                      <dd><a href="article.html?m=29">智慧农业</a></dd>
+                      <dd><a href="article.html?m=30">智慧校园</a></dd>
+                      <dd><a href="article.html?m=31">智慧建筑</a></dd>
+                      <dd><a href="article.html?m=32">智慧城市</a></dd>
+                  </dl>
+              </li>
+              <li class="layui-nav-item">
+                  <a class="nav-item" href="contact.html?m=34">客户服务</a>
+                  <dl class="layui-nav-child"> <!-- 二级菜单 -->
+                      <dd><a href="contact.html?m=34">联系我们</a></dd>
+                      <dd><a href="article.html?m=33">公司客户</a></dd>
+                  </dl>
+              </li>
+              <li class="layui-nav-item">
+                  <a class="nav-item" href="recruitPosition.html?m=35">招贤纳士</a>
+                  <dl class="layui-nav-child"> <!-- 二级菜单 -->
+                      <dd><a href="recruitPosition.html?m=35">招聘职位</a></dd>
+                      <dd><a href="article.html?m=36">招聘流程</a></dd>
+                  </dl>
+              </li>
+          </ul>
+      </div>
+  </div>
+<div class="main" id="main">
+    <input type="hidden" id="newsTotal" value="{$newsTotal}">
+    <div class="layui-row page-width layui-col-space30">
+        <div class="layui-col-sm3 sub-nav layui-hide-xs">
+            <div class="layui-row">
+                <div id="sub-nav">
+                    <a href="productAndSolution.html" class="nav-title font-bai">
+                        产品及解决方案
+                    </a>
+                    {volist name="navLeft" id="navLeft"}
+                    <a href="{$navLeft.f_url}" data-fid="{$navLeft.fid}"
+                       class="nav-stitle">
+                        {$navLeft.f_menu_name}
+                    </a>
+                    {/volist}
+                </div>
+                {include file="base/contact_nav" /}
+            </div>
+        </div>
+        <div class="layui-col-sm9 content-container">
+            <div class="layui-row">
+                <div class="layui-col-sm12">
+                    <div class="atitle layui-hide-xs">
+                        <span> 产品及解决方案</span>
+                        <span class="layui-breadcrumb fr" lay-separator=">">
+                          <a href="/">首页</a>
+                          <a href="javascript:;"> 产品及解决方案</a>
+                          <a><cite>所有产品及解决方案</cite></a>
+                        </span>
+                    </div>
+                    <div class="m-atitle layui-hide-sm">
+                        <p class="bread-p">
+                            <span class="layui-breadcrumb" lay-separator=">">
+                              <a href="/">首页</a>
+                              <a href="javascript:;">产品及解决方案</a>
+                              <a><cite>所有产品及解决方案</cite></a>
+                            </span>
+                        </p>
+                    </div>
+                </div>
+                <script id="demo" type="text/html">
+                    <div class="layui-row layui-col-space30">
+                        {{# layui.each(d, function(index, item){ }}
+                        <div class="layui-col-sm4 layui-col-xs12">
+                            <a href="{{item.f_url}}" title="{{item.f_menu_name}}">
+                                <img src="{{item.f_disImg_path || '/static/img/zanwu.png'}}" alt="">
+                            </a>
+                            <p class="text-center title-box"><a href="{{item.f_url}}">{{item.f_menu_name}}</a></p>
+                        </div>
+                        {{# }); }}
+                        {{# if(d.length === 0){ }}
+                        <span class="article-blank">暂时无数据</span>
+                        {{# } }}
+                    </div>
+                </script>
+                <div class="layui-col-sm12 production-list" id="production-list">
+                    <!--显示列表-->
+
+                </div>
+                <div id="page" class="text-r"></div>
+            </div>
+        </div>
+    </div>
+</div>
+{include file="base/footer" /}
+</body>
+<script src="/static/home/js/global.home.js"></script>
+<script>
+    TSCOPE = {
+        "getProductionAndSolutionInfo_URL": "/api/ApiHome/getProductionAndSolutionInfo"
+    };
+    layui.use(['jquery', 'laypage', 'common', 'laytpl'], function () {
+        var $ = layui.jquery
+            , laypage = layui.laypage
+            , laytpl = layui.laytpl
+            , common = layui.common;
+        var newTotal = parseInt($('#newsTotal').val());
+        if (!newTotal) {
+            $('#page').addClass('layui-hide');
+        }
+        laypage.render({
+            elem: 'page'
+            , count: newTotal //数据总数，从服务端得到
+            , limit: 10
+            , curr: location.hash.replace('#!fenye=', '')
+            , hash: 'fenye'
+            , theme: '#005CA2'
+            , jump: function (obj, first) {
+                var postData = {
+                    action: 'production',
+                    page: obj.curr, //得到当前页，
+                    pageSize: obj.limit  //得到每页显示的条数
+                };
+                common.ajax(TSCOPE.getProductionAndSolutionInfo_URL, 'POST', 'JSON', postData, true, function (res) {
+                    if (res.code = 1200) {
+                        var data = res.data
+                            , getTpl = demo.innerHTML
+                            , view = document.getElementById('production-list');
+                        laytpl(getTpl).render(data, function (html) {
+                            view.innerHTML = html;
+//                            common.flowImg('#production-list img', 'body');
+                        });
+                    } else {
+                        common.layerAlert(2, res.msg, '提示');
+                    }
+                });
+            }
+        });
+    });
+</script>
+
+</html>

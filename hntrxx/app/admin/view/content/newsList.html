@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {include file="base/head" title="新闻列表"}
+</head>
+<body>
+<div class="main-wrap">
+    <div class="y-role">
+        <form class="layui-form">
+            <div class="layui-form-item">
+                <div class="layui-inline">
+                    <label class="layui-form-label" style="width: auto;">新闻类型</label>
+                    <div class="layui-input-inline">
+                        <select name="newsType" lay-verify="" lay-search="" id="newsType">
+                            <option value="0">所有新闻</option>
+                            <option value="13">企业动态</option>
+                            <option value="14">行业资讯</option>
+                        </select>
+                    </div>
+                </div>
+                <button class="layui-btn" lay-submit="" lay-filter="demo1">确定</button>
+            </div>
+        </form>
+        <!--工具栏-->
+        <div class="layui-btn-group demoTable">
+            <button class="layui-btn layui-btn-sm do-action" data-type="delete" data-belong="article"
+                    data-url="/api/ApiAdmin/articleListDeleteById"><i
+                    class="fa fa-trash-o"></i>删除
+            </button>
+            <button class="layui-btn layui-btn-sm do-action" data-type="doRefresh"><i
+                    class="fa fa-refresh"></i>刷新
+            </button>
+        </div>
+        <table id="tableList" lay-filter="tableList"></table>
+        <script type="text/html" id="barTest">
+            <a class="layui-btn layui-btn-primary layui-btn-xs" data-type="article"
+               data-url="/admin/DoAction/articleCheck?id="
+               lay-event="detail">查看</a>
+            <a class="layui-btn layui-btn-xs" data-type="article" data-url="/admin/DoAction/articleEdit?id="
+               lay-event="edit">编辑</a>
+            <a class="layui-btn layui-btn-danger layui-btn-xs" data-type="article"
+               data-url="/admin/DoAction/articleDeleteById?id="
+               lay-event="del">删除</a>
+        </script>
+    </div>
+
+</div>
+</body>
+<script>
+    TSCOP = {
+        'newsSetTop_URL': '/api/ApiAdmin/newsSetTop'
+        , 'updateArticleCrateTime_URL': '/api/ApiAdmin/updateArticleCrateTime'
+    };
+    layui.use(['table', 'jquery', 'common', 'layer', 'form', 'validator'], function () {
+        var $ = layui.jquery
+//            , layer = layui.layer
+            , common = layui.common
+            , form = layui.form
+            , table = layui.table
+            , validator = layui.validator;
+        var newsType;
+        if (!sessionStorage.getItem('newsType')) {
+            newsType = 0;
+            sessionStorage.setItem('newsType', newsType);
+        } else {
+            newsType = sessionStorage.getItem('newsType');
+            $('#newsType').find('option').each(function () {
+                var $this = $(this);
+                if ($this.val() == newsType) {
+                    $(this).attr("selected", "selected");
+                }
+                form.render('select');
+            });
+        }
+        form.on('submit(demo1)', function (data) {
+            newsType = data.field.newsType;
+            sessionStorage.setItem('newsType', newsType);
+            table.render({
+                elem: '#tableList'
+//            , height: 400
+                , url: '/api/ApiAdmin/queryArticleList' //数据接口
+                , even: false //若不开启隔行背景，不设置该参数即可
+                , skin: ''
+                , page: true //开启分页
+                , where: {type: 3, newsType: newsType}// 2代表 文章   3代表 新闻
+                , limit: 10
+                , cols: [[ //表头
+                    {type: 'checkbox', fiexd: 'left'}
+//                , {field: 'f_article_id', title: 'ID', width: 80, sort: true}
+                    , {field: 'f_article_title', title: '标题'}
+//                , {field: 'f_pmenu_name', title: '主类型', width: 100, sort: true}
+                    , {field: 'f_menu_name', title: '类型', width: 120}
+                    , {field: 'f_real_time', title: '发布时间(可修改)', edit: 'text', width: 150, sort: true}
+                    , {field: 'f_create_time', title: '创建时间', width: 120, sort: true}
+                    , {
+                        field: '', title: '修改封面', width: 90, align: 'center', templet: function (d) {
+                            return '<a class="layui-btn layui-btn-warm layui-btn-xs" data-type="updateCoverImg"'
+                                + 'data-url="/admin/DoAction/articleUpdateCoverImg?id=" lay-event="edit">修改</a>';
+                        }
+                    }
+                    , {
+                        field: 'f_top', title: '首页推荐', width: 100, align: 'center', templet: function (d) {
+                            var html = '';
+                            if (d.f_top) {
+                                html = '<input type="checkbox" name="yyy" data-id=' + d.f_article_id + ' lay-skin="switch" lay-text="ON|OFF" checked>';
+                            } else {
+                                html = '<input type="checkbox" name="yyy" data-id=' + d.f_article_id + ' lay-skin="switch" lay-text="ON|OFF" >';
+                            }
+                            return html;
+                        }
+                    }
+                    , {fixed: 'right', title: '操作', align: 'center', width: 170, toolbar: '#barTest'}
+                ]]
+                , done: function (res) {
+
+                }
+            });
+            return false;
+        });
+
+        table.render({
+            elem: '#tableList'
+//            , height: 400
+            , url: '/api/ApiAdmin/queryArticleList' //数据接口
+            , even: false //若不开启隔行背景，不设置该参数即可
+            , skin: ''
+            , page: true //开启分页
+            , where: {type: 3, newsType: newsType}// 2代表 文章   3代表 新闻
+            , limit: 10
+            , cols: [[ //表头
+                {type: 'checkbox', fiexd: 'left'}
+//                , {field: 'f_article_id', title: 'ID', width: 80, sort: true}
+                , {field: 'f_article_title', title: '标题'}
+//                , {field: 'f_pmenu_name', title: '主类型', width: 100, sort: true}
+                , {field: 'f_menu_name', title: '类型', width: 120}
+                , {field: 'f_real_time', title: '发布时间(可修改)', edit: 'text', width: 150, sort: true}
+                , {field: 'f_create_time', title: '创建时间', width: 120, sort: true}
+                , {
+                    field: '', title: '修改封面', width: 90, align: 'center', templet: function (d) {
+                        return '<a class="layui-btn layui-btn-warm layui-btn-xs" data-type="updateCoverImg"'
+                            + 'data-url="/admin/DoAction/articleUpdateCoverImg?id=" lay-event="edit">修改</a>';
+                    }
+                }
+                , {
+                    field: 'f_top', title: '首页推荐', width: 100, align: 'center', templet: function (d) {
+                        var html = '';
+                        if (d.f_top) {
+                            html = '<input type="checkbox" name="yyy" data-id=' + d.f_article_id + ' lay-skin="switch" lay-text="ON|OFF" checked>';
+                        } else {
+                            html = '<input type="checkbox" name="yyy" data-id=' + d.f_article_id + ' lay-skin="switch" lay-text="ON|OFF" >';
+                        }
+                        return html;
+                    }
+                }
+                , {fixed: 'right', title: '操作', align: 'center', width: 170, toolbar: '#barTest'}
+            ]]
+            , done: function (res) {
+
+            }
+        });
+        table.on('edit', function (obj) { //注：edit是固定事件名，test是table原始容器的属性 lay-filter="对应的值"
+            if (!validator.IsDateTime(obj.value)) {
+                layer.msg('日期格式不正确,请重新修改!');
+                return;
+            }
+            var articleId = obj.data.f_article_id
+                , dateStr = obj.value + ' 00:00:00';
+            common.ajax(TSCOP.updateArticleCrateTime_URL, 'POST', 'JSON', {
+                f_article_id: articleId,
+                f_real_time: dateStr
+            }, true, function (res) {
+                if (res.code == 1200) {
+                    common.layerMsg(6, res.msg, 2000);
+                } else {
+                    common.layerAlert(2, res.msg, '提示');
+                }
+            })
+        });
+
+        form.on('switch', function (data) {
+            var switchStatus = data.elem.checked
+                , top = 0
+                , fid = $(data.elem).data('id');
+            switchStatus ? top = 1 : top = 0;
+            common.ajax(TSCOP.newsSetTop_URL, 'POST', 'JSON', {fid: fid, f_top: top}, true, function (res) {
+                if (res.code == 1200) {
+                    common.layerMsg(6, res.msg, 2000);
+                } else {
+                    common.layerAlert(2, res.msg, '提示');
+                }
+            })
+        });
+    });
+</script>
+<script src="/static/admin/js/global.js"></script>
+</html>

@@ -1,0 +1,21 @@
+<div id="sub-nav">
+  <a href="{$navFirst}" class="nav-title font-bai">
+        {$posCurr.pmenu_name}
+    </a> {volist name="navLeft" id="navLeft"}
+  <a href="{$navLeft.f_url}" data-fid="{$navLeft.fid}" class="nav-stitle">
+        {$navLeft.f_menu_name}
+    </a> {/volist}
+</div>
+<script>
+  layui.use(['jquery'], function() {
+    var $ = layui.jquery;
+    var menuId = $('#menuId').val();
+    $('#sub-nav>a.nav-stitle').each(function() {
+      var $this = $(this);
+      if ($this.data('fid') == menuId) {
+        $this.addClass('active-navLeft');
+        return false;
+      }
+    });
+  })
+</script>

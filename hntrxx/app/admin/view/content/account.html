@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {include file="base/head" title="账号管理"}
+</head>
+<body>
+<div class="main-wrap">
+    <blockquote class="layui-elem-quote fhui-admin-main_hd">
+        <h2>后台管理</h2>
+    </blockquote>
+    <!--<div class="y-role">-->
+        <!--&lt;!&ndash;工具栏&ndash;&gt;-->
+        <!--<div class="fhui-admin-table-container">-->
+            <!--<div class="layui-btn-group demoTable">-->
+                <!--<button class="layui-btn layui-btn-sm do-action" data-type="getCheckData">获取选中行数据</button>-->
+                <!--<button class="layui-btn layui-btn-sm do-action" data-type="getCheckLength">获取选中数目</button>-->
+                <!--<button class="layui-btn layui-btn-sm do-action" data-type="isAll">验证是否全选</button>-->
+            <!--</div>-->
+            <!--&lt;!&ndash;表格&ndash;&gt;-->
+            <!--<table id="tableList" lay-filter="tableList"></table>-->
+            <!--<script type="text/html" id="barTest">-->
+                <!--<a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a>-->
+                <!--<a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>-->
+                <!--<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>-->
+            <!--</script>-->
+        <!--</div>-->
+    <!--</div>-->
+
+</div>
+</body>
+<script src="/static/admin/js/global.js"></script>
+<!--<script>-->
+    <!--layui.use(['table', 'jquery', 'common', 'layer'], function () {-->
+        <!--var $ = layui.jquery-->
+            <!--, layer = layui.layer-->
+            <!--, common = layui.common-->
+            <!--, table = layui.table;-->
+
+        <!--//第一个实例-->
+        <!--table.render({-->
+            <!--elem: '#tableList'-->
+<!--//            , height: 500-->
+            <!--, url: '/admin/table/user' //数据接口-->
+            <!--, even: false //若不开启隔行背景，不设置该参数即可-->
+            <!--, skin: ''-->
+            <!--, page: true //开启分页-->
+            <!--, limit: 10-->
+            <!--, cols: [[ //表头-->
+                <!--{type: 'checkbox', fiexd: 'left'}-->
+                <!--, {field: 'id', title: 'ID', width: 80, sort: true}-->
+                <!--, {field: 'username', title: '用户名', width: 80}-->
+                <!--, {field: 'sex', title: '性别', width: 80, sort: true}-->
+                <!--, {field: 'city', title: '城市', width: 80}-->
+                <!--, {field: 'sign', title: '签名', width: 177}-->
+                <!--, {field: 'experience', title: '积分', width: 80, sort: true}-->
+                <!--, {field: 'score', title: '评分', width: 80, sort: true}-->
+                <!--, {field: 'classify', title: '职业', width: 80}-->
+                <!--, {field: 'wealth', title: '财富', width: 135, sort: true}-->
+                <!--, {fixed: 'right', title: '操作', align: 'center', toolbar: '#barTest'}-->
+            <!--]]-->
+            <!--, done: function (res) {-->
+<!--//                console.log(res);-->
+                <!--common.layerMsg(6, '更新成功', 5000)-->
+            <!--}-->
+        <!--});-->
+    <!--});-->
+<!--</script>-->
+
+</html>

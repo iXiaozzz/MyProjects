@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {include file="base/head" title="文章查看"/}
+</head>
+<style>
+    .main {
+        margin: 5px;
+    }
+</style>
+<body>
+<div class="main">
+    <form class="layui-form layui-form-pane">
+        <div class="layui-form-item">
+            <label class="layui-form-label">资质名称</label>
+            <div class="layui-input-inline">
+                <input type="text" class="layui-input" value="{$fileInfo.f_file_title}" disabled>
+            </div>
+        </div>
+        
+        <div class="layui-form-item layui-form-text">
+            <label class="layui-form-label">图片</label>
+            <div class="layui-input-block">
+                <img src="{$fileInfo.f_small_file_path}" alt="正在加载..." style="max-width: 512px;">
+            </div>
+        </div>
+    </form>
+</div>
+</body>
+</html>

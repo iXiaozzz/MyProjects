@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {include file="base/head" title="公司信息"/}
+</head>
+<body>
+<div class="main-wrap">
+    <form class="layui-form layui-form-pane">
+        <blockquote class="layui-elem-quote fhui-admin-main_hd">
+            <h2>SEO优化</h2>
+        </blockquote>
+        <div class="layui-form-item">
+            <label class="layui-form-label">网站关键词</label>
+            <div class="layui-input-inline" style="width: 50%;">
+                <input type="text" name="website_keywords" lay-verify="required" autocomplete="off"
+                       placeholder="请输入关键词" value="{$companyInfo.f_website_keywords}"
+                       class="layui-input">
+            </div>
+            <div class="layui-form-mid layui-word-aux">不超过30个字</div>
+        </div>
+        <div class="layui-form-item layui-form-text">
+            <label class="layui-form-label">网站描述<span class="layui-word-aux">(200字内)</span></label>
+            <div class="layui-input-block">
+                <textarea name="website_description" placeholder="请描述..."
+                          class="layui-textarea">{$companyInfo.f_website_description}</textarea>
+            </div>
+        </div>
+        <blockquote class="layui-elem-quote fhui-admin-main_hd">
+            <h2>公司信息</h2>
+        </blockquote>
+        <div class="layui-form-item">
+            <label class="layui-form-label">公司名称</label>
+            <div class="layui-input-inline" style="width: 50%;">
+                <input type="text" name="companyName" lay-verify="required|title" autocomplete="off"
+                       placeholder="请输入公司名称" value="{$companyInfo.f_company_name}"
+                       class="layui-input">
+            </div>
+            <div class="layui-form-mid layui-word-aux">不超过30个字</div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">电话</label>
+            <div class="layui-input-inline">
+                <input type="text" name="telPhone" lay-verify="required|checkTelPhone" placeholder="请输入固定电话"
+                       autocomplete="off" value="{$companyInfo.f_tel}"
+                       class="layui-input">
+            </div>
+            <div class="layui-form-mid layui-word-aux">请务必填写固定电话</div>
+            <label class="layui-form-label">传真机</label>
+            <div class="layui-input-inline">
+                <input type="text" name="faxNumber" lay-verify="required" placeholder="请输入传真机号"
+                       autocomplete="off" value="{$companyInfo.f_fax}"
+                       class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">手机</label>
+            <div class="layui-input-inline">
+                <input type="text" name="mobilePhone" lay-verify="checkMobilePhone" placeholder="请输入手机号"
+                       value="{$companyInfo.f_phone}" autocomplete="off" class="layui-input">
+            </div>
+            <!--<div class="layui-form-mid layui-word-aux">请务必填写固定电话</div>-->
+            <label class="layui-form-label">邮箱</label>
+            <div class="layui-input-inline">
+                <input type="text" name="email" lay-verify="email" placeholder="请输入邮箱" autocomplete="off"
+                       value="{$companyInfo.f_email}" class="layui-input">
+            </div>
+            <div class="layui-form-mid layui-word-aux">必填</div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">公司网址</label>
+            <div class="layui-input-inline">
+                <input type="text" name="webUrl" lay-verify="url" placeholder="请输入网址" autocomplete="off"
+                       value="{$companyInfo.f_website_url}" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">公司地址</label>
+            <div class="layui-input-inline" style="width: 70%;">
+                <input type="text" name="address" lay-verify="required|title" autocomplete="off" placeholder="请输入公司地址"
+                       value="{$companyInfo.f_address}" class="layui-input">
+            </div>
+            <div class="layui-form-mid layui-word-aux">不超过40个字</div>
+        </div>
+        <div class="layui-form-item layui-form-text">
+            <label class="layui-form-label">公司简介<span class="layui-word-aux">(140字内)</span></label>
+            <div class="layui-input-block">
+                <textarea name="companyIntro" placeholder="请输入内容"
+                          class="layui-textarea">{$companyInfo.f_company_intro}</textarea>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <!--<div class="layui-input-block">-->
+            <button class="layui-btn" lay-submit="" lay-filter="demo1">立即提交</button>
+            <!--<button type="reset" class="layui-btn layui-btn-primary">重置</button>-->
+            <!--</div>-->
+        </div>
+    </form>
+</div>
+</body>
+<script src="/static/admin/js/global.js"></script>
+<script>
+    TSCOPE = {
+        "insertCompanyInfo_URL": "/api/ApiAdmin/insertCompanyInfo"
+    };
+    layui.use(['form', 'validator', 'common'], function () {
+        var form = layui.form
+//            , $ = layui.jquery
+            , common = layui.common
+            , validator = layui.validator;//验证表单
+
+        //自定义验证规则
+//        form.verify({
+//            username: function (value, item) { //value：表单的值、item：表单的DOM对象
+//                if (!new RegExp("^[a-zA-Z0-9_\u4e00-\u9fa5\\s·]+$").test(value)) {
+//                    return '用户名不能有特殊字符';
+//                }
+//                if (/(^\_)|(\__)|(\_+$)/.test(value)) {
+//                    return '用户名首尾不能出现下划线\'_\'';
+//                }
+//                if (/^\d+\d+\d$/.test(value)) {
+//                    return '用户名不能全为数字';
+//                }
+//            }
+//
+//            //我们既支持上述函数式的方式，也支持下述数组的形式
+//            //数组的两个值分别代表：[正则匹配、匹配不符时的提示文字]
+//            , pass: [
+//                /^[\S]{6,12}$/
+//                , '密码必须6到12位，且不能出现空格'
+//            ]
+//            , title: function (value) {
+//                if (value.trim().length < 5) {
+//                    return '标题至少得5个字符啊';
+//                }
+//            }
+//            , content: function (value) {
+//                layedit.sync(editIndex);
+//            }
+//            , checkTelPhone: function (value) {
+//                if (value.trim()) {
+//                    if (!validator.IsTelePhoneNumber(value)) {
+//                        return '固定电话格式不正确';
+//                    }
+//                }
+//            }
+//            , checkMobilePhone: function (value) {
+//                if (value.trim()) {
+//                    if (!validator.IsMobilePhoneNumber(value)) {
+//                        return '手机格式不正确';
+//                    }
+//                }
+//            }
+//        });
+        //提交表单
+        form.on('submit(demo1)', function (data) {
+                common.ajax(TSCOPE.insertCompanyInfo_URL, 'post', 'JSON', data.field, '', function (res) {
+                    switch (res.code) {
+                        case 1200:
+                            common.layerMsg(1, res.msg, 2000, function () {
+                                window.location.reload();
+                            });
+                            break;
+
+                        default :
+                            common.layerAlert(2, res.msg, '提示');
+                            break;
+                    }
+
+                });
+                return false;
+            }
+        )
+
+    });
+</script>
+</html>

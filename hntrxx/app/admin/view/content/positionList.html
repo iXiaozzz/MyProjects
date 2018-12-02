@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {include file="base/head" title="职位列表"}
+</head>
+<body>
+<div class="main-wrap">
+    <div class="y-role">
+        <!--工具栏-->
+        <div class="layui-btn-group demoTable">
+            <!--<button class="layui-btn layui-btn-sm do-action" data-type="getCheckData">获取选中行数据</button>-->
+            <!--<button class="layui-btn layui-btn-sm do-action" data-type="getCheckLength">获取选中数目</button>-->
+            <!--<button class="layui-btn layui-btn-sm do-action" data-type="isAll">验证是否全选</button>-->
+            <button class="layui-btn layui-btn-sm do-action" data-type="delete" data-belong="position"
+                    data-url="/api/ApiAdmin/deleteListPosition"><i
+                    class="fa fa-trash-o"></i>删除
+            </button>
+            <button class="layui-btn layui-btn-sm do-action" data-type="doRefresh"><i
+                    class="fa fa-refresh"></i>刷新
+            </button>
+        </div>
+        <table id="tableList" lay-filter="tableList"></table>
+        <script type="text/html" id="barTest">
+            <a class="layui-btn layui-btn-primary layui-btn-xs" data-type="position"
+               data-url="/admin/DoAction/positionCheck?id="
+               lay-event="detail">查看</a>
+            <a class="layui-btn layui-btn-xs" data-type="position" data-url="/admin/DoAction/positionEdit?id="
+               lay-event="edit">编辑</a>
+            <a class="layui-btn layui-btn-danger layui-btn-xs" data-type="position"
+               data-url="/admin/DoAction/deletePosition?id="
+               lay-event="del">删除</a>
+        </script>
+    </div>
+
+</div>
+</body>
+<script>
+    TSCOP = {
+        'positionSetOrder_URL': '/api/ApiAdmin/positionSetOrder'
+    };
+    layui.use(['table', 'jquery', 'common'], function () {
+        var $ = layui.jquery
+//            , layer = layui.layer
+            , common = layui.common
+            , table = layui.table;
+
+        table.render({
+            elem: '#tableList'
+//            , height: 400
+            , url: '/api/ApiAdmin/queryPositionList' //数据接口
+            , even: false //若不开启隔行背景，不设置该参数即可
+            , skin: ''
+            , page: true //开启分页
+            , limit: 10
+            , cols: [[ //表头
+                {type: 'checkbox', fiexd: 'left'}
+//                , {field: 'f_id', title: 'ID', width: 80, sort: true}
+                , {field: 'f_position_name', title: '职位名称', sort: true}
+                , {field: 'f_position_place', title: '工作地点', width: 160, sort: true}
+                , {field: 'f_position_num', title: '人数', width: 80, sort: true}
+                , {field: 'f_create_time', title: '发布时间', width: 180, sort: true}
+                , {field: 'f_order', title: '排序从小到大(可修改)', edit: 'text', width: 180, sort: true}
+                , {fixed: 'right', title: '操作', align: 'center', width: 180, toolbar: '#barTest'}
+            ]]
+            , done: function (res) {
+//                console.log(res);
+//                common.layerMsg(6, '更新成功!', 3000)
+            }
+        });
+
+        table.on('edit', function (obj) { //注：edit是固定事件名，test是table原始容器的属性 lay-filter="对应的值"
+            var fid = obj.data.f_id, forder = parseInt(obj.value);
+            common.ajax(TSCOP.positionSetOrder_URL, 'POST', 'JSON', {f_id: fid, f_order: forder}, true, function (res) {
+                if (res.code == 1200) {
+                    common.layerMsg(6, res.msg, 2000);
+                } else {
+                    common.layerAlert(2, res.msg, '提示');
+                }
+            })
+
+        });
+    });
+</script>
+<script src="/static/admin/js/global.js"></script>
+</html>

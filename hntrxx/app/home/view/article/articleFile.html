@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {include file="base/head" title="$companyInfo.f_company_name"/}
+    <link rel="stylesheet" href="/static/plus/photoSwipe/dist/photoswipe.css">
+    <link rel="stylesheet" href="/static/plus/photoSwipe/dist/default-skin/default-skin.css">
+    <link rel="stylesheet" href="/static/home/css/article.css">
+</head>
+
+<body>
+<!--[if lt IE 9]-->
+<script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
+<script src="/static/common/js/respond.min.js"></script>
+
+<![endif]-->
+{include file="base/header" /}
+<div class="main" id="main">
+    <input type="hidden" id="menuId" value="{$menuId}">
+    <input type="hidden" id="fileTotal" value="{$fileTotal}">
+    <div class="layui-row page-width layui-col-space30 artcile">
+        <div class="layui-col-sm3 sub-nav layui-hide-xs">
+            <div class="layui-row">
+                {include file="base/article_nav" /}
+                {include file="base/contact_nav" /}
+            </div>
+        </div>
+        <div class="layui-col-sm9 content-container">
+            <div class="layui-row">
+                {include file="base/article_breadcrumb" /}
+                <div class="layui-col-sm12 layui-row" style="overflow: hidden;">
+                    <img class="layui-col-sm12 layui-col-xs12" src="{$bannerPath}" alt="">
+                    <script id="demo" type="text/html">
+                        {{# layui.each(d, function(index, item){ }}
+                        {{# if(item.f_img_flag === 1){ }}
+                        <figure class="zizhi-item layui-col-xs12 layui-col-sm4 gaoImg">
+                            <a href="{{ item.f_large_file_path }} "
+                               data-size="{{item.f_large_file_width*2}}x{{item.f_large_file_height*2}}"
+                               title="{{ item.f_file_title }}">
+                                <img src="/static/img/img_loading.gif" data-original="{{ item.f_small_file_path }}"
+                                     alt=" 正在加载..."/>
+                            </a>
+                            <figcaption class="layui-elip">{{ item.f_file_title }}</figcaption>
+                        </figure>
+                        {{# } }}
+                        {{# if(item.f_img_flag === 0){ }}
+                        <figure class="zizhi-item layui-col-xs12 layui-col-sm4 aiImg">
+                            <a href="{{ item.f_large_file_path }} "
+                               data-size="{{item.f_large_file_width*2}}x{{item.f_large_file_height*2}}"
+                               title="{{ item.f_file_title }}">
+                                <img src="/static/img/img_loading.gif" data-original="{{ item.f_small_file_path }}"
+                                     alt="正在加载..."/>
+                            </a>
+                            <figcaption class="layui-elip">{{ item.f_file_title }}</figcaption>
+                        </figure>
+                        {{# } }}
+
+                        {{# }); }}
+
+                        {{# if(d.length === 0){ }}
+                        <span class="article-blank" style="position: relative;bottom: -15px;">暂时无数据</span>
+                        {{# } }}
+
+                    </script>
+                    <div class="layui-row layui-col-space30 my-gallery zizhi-box" id="my-gallery">
+
+                    </div>
+                    <div id="page" class="text-r"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{include file="base/footer" /}
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe.
+         It's a separate element, as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. PhotoSwipe keeps only 3 slides in DOM to save memory. -->
+        <!-- don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo https://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+</body>
+<script src="/static/home/js/global.home.js"></script>
+<script src="/static/plus/photoSwipe/dist/photoswipe.min.js"></script>
+<script src="/static/plus/photoSwipe/dist/photoswipe-ui-default.min.js"></script>
+
+<script>
+    TSCOPE = {
+        "getFileListByLimit": "/api/ApiHome/getFileListByLimit"
+    };
+    // execute above function
+    // initPhotoSwipeFromDOM('#my-gallery');
+    layui.use(['jquery', 'laypage', 'common', 'laytpl'], function () {
+        var $ = layui.jquery
+            , laypage = layui.laypage
+            , laytpl = layui.laytpl
+            , common = layui.common;
+
+        var device = layui.device(), scale = 1.5;
+        if (device.ios || device.android || device.weixin) {
+            scale = 1.2;
+        }
+
+        var initPhotoSwipeFromDOM = function (gallerySelector) {
+
+            // parse slide data (url, title, size ...) from DOM elements
+            // (children of gallerySelector)
+            var parseThumbnailElements = function (el) {
+                var thumbElements = el.childNodes,
+                    numNodes = thumbElements.length,
+                    items = [],
+                    figureEl,
+                    linkEl,
+                    size,
+                    item;
+
+                for (var i = 0; i < numNodes; i++) {
+
+                    figureEl = thumbElements[i]; // <figure> element
+
+                    // include only element nodes
+                    if (figureEl.nodeType !== 1) {
+                        continue;
+                    }
+
+                    linkEl = figureEl.children[0]; // <a> element
+
+                    size = linkEl.getAttribute('data-size').split('x');
+
+                    // create slide object
+                    item = {
+                        src: linkEl.getAttribute('href'),
+                        w: parseInt(size[0], 10),
+                        h: parseInt(size[1], 10)
+                    };
+
+
+                    if (figureEl.children.length > 1) {
+                        // <figcaption> content
+                        item.title = figureEl.children[1].innerHTML;
+                    }
+
+                    if (linkEl.children.length > 0) {
+                        // <img> thumbnail element, retrieving thumbnail url
+                        item.msrc = linkEl.children[0].getAttribute('src');
+                    }
+
+                    item.el = figureEl; // save link to element for getThumbBoundsFn
+                    items.push(item);
+                }
+
+                return items;
+            };
+
+            // find nearest parent element
+            var closest = function closest(el, fn) {
+                return el && ( fn(el) ? el : closest(el.parentNode, fn) );
+            };
+
+            // triggers when user clicks on thumbnail
+            var onThumbnailsClick = function (e) {
+                e = e || window.event;
+                e.preventDefault ? e.preventDefault() : e.returnValue = false;
+
+                var eTarget = e.target || e.srcElement;
+
+                // find root element of slide
+                var clickedListItem = closest(eTarget, function (el) {
+                    return (el.tagName && el.tagName.toUpperCase() === 'FIGURE');
+                });
+
+                if (!clickedListItem) {
+                    return;
+                }
+
+                // find index of clicked item by looping through all child nodes
+                // alternatively, you may define index via data- attribute
+                var clickedGallery = clickedListItem.parentNode,
+                    childNodes = clickedListItem.parentNode.childNodes,
+                    numChildNodes = childNodes.length,
+                    nodeIndex = 0,
+                    index;
+
+                for (var i = 0; i < numChildNodes; i++) {
+                    if (childNodes[i].nodeType !== 1) {
+                        continue;
+                    }
+
+                    if (childNodes[i] === clickedListItem) {
+                        index = nodeIndex;
+                        break;
+                    }
+                    nodeIndex++;
+                }
+
+
+                if (index >= 0) {
+                    // open PhotoSwipe if valid index found
+                    openPhotoSwipe(index, clickedGallery);
+                }
+                return false;
+            };
+
+            // parse picture index and gallery index from URL (#&pid=1&gid=2)
+            var photoswipeParseHash = function () {
+                var hash = window.location.hash.substring(1),
+                    params = {};
+
+                if (hash.length < 5) {
+                    return params;
+                }
+
+                var vars = hash.split('&');
+                for (var i = 0; i < vars.length; i++) {
+                    if (!vars[i]) {
+                        continue;
+                    }
+                    var pair = vars[i].split('=');
+                    if (pair.length < 2) {
+                        continue;
+                    }
+                    params[pair[0]] = pair[1];
+                }
+
+                if (params.gid) {
+                    params.gid = parseInt(params.gid, 10);
+                }
+
+                return params;
+            };
+
+            var openPhotoSwipe = function (index, galleryElement, disableAnimation, fromURL) {
+                var pswpElement = document.querySelectorAll('.pswp')[0],
+                    gallery,
+                    options,
+                    items;
+
+                items = parseThumbnailElements(galleryElement);
+
+                // define options (if needed)
+                options = {
+                    history: true,
+                    focus: true,
+                    loop: false,
+                    pinchToClose: true,
+                    fullscreenEl: true,
+                    autoResize: true,
+                    preload: [1, 1],//分别预加载前后一张
+                    //tapToClose: true,//点击关闭
+                    maxSpreadZoom: 5,
+                    index: index,//当前图片的索引
+
+                    // define gallery index (for URL)
+                    //                galleryUID: galleryElement.getAttribute('data-pswp-uid'),
+                    galleryUID: false,
+
+                    getThumbBoundsFn: function (index) {
+                        // See Options -> getThumbBoundsFn section of documentation for more info
+                        var thumbnail = items[index].el.getElementsByTagName('img')[0], // find thumbnail
+                            pageYScroll = window.pageYOffset || document.documentElement.scrollTop,
+                            rect = thumbnail.getBoundingClientRect();
+
+                        return {x: rect.left, y: rect.top + pageYScroll, w: rect.width};
+                    },
+                    shareButtons: [
+                        //                    {id: 'wechat', label: '分享微信', url: '#'},
+                        //                    {id: 'weibo', label: '新浪微博', url: '#'},
+                        {id: 'download', label: '保存图片', url: '{{raw_image_url}}', download: false}
+                    ],
+                    showAnimationDuration: 0,
+                    hideAnimationDuration: 0,
+                    getDoubleTapZoom: function (isMouseClick, item) {
+                        if (isMouseClick) {
+                            return 1;
+                        } else {
+                            return item.initialZoomLevel < 0.7 ? 1 : scale;
+                        }
+                    }
+
+                };
+
+                // PhotoSwipe opened from URL
+                if (fromURL) {
+                    if (options.galleryPIDs) {
+                        // parse real index when custom PIDs are used
+                        // http://photoswipe.com/documentation/faq.html#custom-pid-in-url
+                        for (var j = 0; j < items.length; j++) {
+                            if (items[j].pid == index) {
+                                options.index = j;
+                                break;
+                            }
+                        }
+                    } else {
+                        // in URL indexes start from 1
+                        options.index = parseInt(index, 10) - 1;
+                    }
+                } else {
+                    options.index = parseInt(index, 10);
+                }
+
+                // exit if index not found
+                if (isNaN(options.index)) {
+                    return;
+                }
+
+                if (disableAnimation) {
+                    options.showAnimationDuration = 0;
+                }
+
+                // Pass data to PhotoSwipe and initialize it
+                gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, options);
+                gallery.init();
+
+            };
+
+            // loop through all gallery elements and bind events
+            var galleryElements = document.querySelectorAll(gallerySelector);
+
+            for (var i = 0, l = galleryElements.length; i < l; i++) {
+                galleryElements[i].setAttribute('data-pswp-uid', i + 1);
+                galleryElements[i].onclick = onThumbnailsClick;
+            }
+
+            // Parse URL and open gallery if it contains #&pid=3&gid=1
+            var hashData = photoswipeParseHash();
+            if (hashData.pid && hashData.gid) {
+                openPhotoSwipe(hashData.pid, galleryElements[hashData.gid - 1], true, true);
+            }
+        };
+        var menuId = parseInt($('#menuId').val())
+            , fileTotal = parseInt($('#fileTotal').val());
+        if (!fileTotal) {
+            $('#page').addClass('layui-hide');
+        }
+        laypage.render({
+            elem: 'page'
+            , count: fileTotal //数据总数，从服务端得到
+            , limit: 9
+            , curr: location.hash.replace('#!fenye=', '')
+            , hash: 'fenye'
+            , theme: '#005CA2'
+            , jump: function (obj, first) {
+                var postData = {
+                    menuId: menuId,
+                    page: obj.curr, //得到当前页，
+                    pageSize: obj.limit  //得到每页显示的条数
+                };
+                common.ajax(TSCOPE.getFileListByLimit, 'POST', 'JSON', postData, true, function (res) {
+                    if (res.code = 1200) {
+                        var data = res.data
+                            , getTpl = demo.innerHTML
+                            , view = document.getElementById('my-gallery');
+                        laytpl(getTpl).render(data, function (html) {
+                            view.innerHTML = html;
+//                            common.flowImg('#main img', 'body');
+                            initPhotoSwipeFromDOM('#my-gallery');
+                            init();
+//                            if (!device.ios || !device.android || !device.weixin) {
+//                                setMargin();
+//                                setAfterMarginTop();
+//                            }
+                        });
+                    } else {
+                        common.layerAlert(2, res.msg, '提示');
+                    }
+                });
+            }
+        });
+
+        window.onscroll = function () {
+            lazyload();
+        };
+
+
+        function setMargin() {
+            var oGaoImg = $('#my-gallery .gaoImg')
+                , len = oGaoImg.length;
+            if (!len) return;
+            var first = oGaoImg.eq(0)
+                , yushu = 3 - (len % 3);
+            if (yushu) {
+                first.find('img').load(function () {
+                    var html = ''
+                        , bheight = Math.ceil(first.outerHeight()) + 0.5;
+                    for (var i = 0; i < yushu; i++) {
+                        html += '<figure class="zizhi-item layui-hide-xs layui-col-sm4" style="height:' + bheight + 'px;background-color: #fff;border: none;">' +
+                            '<a href="/static/img/zanwu.png" data-size="714x513" style="cursor: default;"> ' +
+                            '<img src="/static/img/kongbai.png" alt="正在加载..."/>' +
+                            '</a>' +
+                            '<figcaption style="color:#fff;background: none;">空白页</figcaption>' +
+                            '</figure>';
+                    }
+                    oGaoImg.eq(len - 1).after(html);
+                });
+            }
+        }
+
+        function setAfterMarginTop() {
+            var oGaoImg = $('#my-gallery .gaoImg')
+                , len = oGaoImg.length;
+            if (!len) return;
+            var first = oGaoImg.eq(0)
+                , yushu = 3 - (len % 3);
+            first.find('img').load(function () {
+                var gaoHeight = first.outerHeight(true)
+                    , aiFirst = oGaoImg.eq(len - 1).next();
+                aiFirst.find('img').load(function () {
+                    var aiHeight = aiFirst.innerHeight();
+                    switch (yushu) {
+                        case 1:
+                            oGaoImg.eq(len - 1).next().css({'margin-top': gaoHeight - aiHeight - 2 + 'px'});
+                            break;
+                        case 2:
+                            oGaoImg.eq(len - 1).next().css({'margin-top': gaoHeight - aiHeight - 2 + 'px'});
+                            oGaoImg.eq(len - 1).next().next().css({'margin-top': gaoHeight - aiHeight + 'px'});
+                            break;
+                        default:
+                            break;
+                    }
+                });
+            });
+        }
+
+        function init() {
+            var images = document.getElementById('my-gallery').getElementsByTagName('img');
+            // 加载首屏图片
+            for (var i = 0, len = images.length; i < len; i++) {
+                var obj = images[i];
+                // 如果在可视区域并且还没被加载过
+                if (obj.getBoundingClientRect().top < document.documentElement.clientHeight && !obj.isLoad) {
+                    obj.isLoad = true;
+                    // 先调用 HTML5 方法
+                    if (obj.dataset)
+                        imageLoaded(obj, obj.dataset.original);
+                    else
+                        imageLoaded(obj, obj.getAttribute('data-original'));
+                } else {  // 假设图片标签在 HTML 中的顺序和实际页面中顺序一致
+                    break;
+                }
+            }
+        }
+
+        function lazyload() {
+            var lazy = 0;
+            // var images = document.images;
+            var images = document.getElementById('my-gallery').getElementsByTagName('img');
+            // var images = $('#my-gallery').find('img');
+            for (var i = 0, len = images.length; i < len; i++) {
+                var obj = images[i];
+                if (obj.getBoundingClientRect().top - lazy < document.documentElement.clientHeight && !obj.isLoad) {
+                    obj.isLoad = true;
+                    if (obj.dataset)
+                        imageLoaded(obj, obj.dataset.original);
+                    else
+                        imageLoaded(obj, obj.getAttribute('data-original'));
+                }
+            }
+        }
+
+        function imageLoaded(obj, src) {
+            var img = new Image();
+            img.onload = function () {
+                obj.src = src;
+            };
+            img.src = src;
+        }
+
+
+    });
+
+
+</script>
+
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {include file="base/head" title="$companyInfo.f_company_name"/}
+    <link rel="stylesheet" href="/static/home/css/article.css">
+</head>
+
+<body>
+<!--[if lt IE 9]-->
+<script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
+<script src="/static/common/js/respond.min.js"></script>
+
+<![endif]-->
+{include file="base/header" /}
+<div class="main" id="main">
+    <input type="hidden" id="menuId" value="{$menuId}">
+    <div class="layui-row page-width layui-col-space30">
+        <div class="layui-col-sm3 sub-nav layui-hide-xs">
+            <div class="layui-row">
+                {include file="base/article_nav" /}
+                {include file="base/contact_nav" /}
+            </div>
+        </div>
+        <div class="layui-col-sm9 content-container">
+            <div class="layui-row">
+                {include file="base/article_breadcrumb" /}
+                <div class="layui-col-sm12 article-content">
+                    <h2 class="news-title">{$thisNews.f_article_title}</h2>
+                    <p class="article-blank">{$thisNews.f_real_time | substr=0,10}</p>
+                    <div class="news-content" id="news-content">
+                        {if condition="$thisNews.f_article_content neq ''"}
+                        {$thisNews.f_article_content}
+                        {else /}
+                        <span class="article-blank">请先发表...</span>
+                        {/if}
+                    </div>
+                </div>
+                <div class="layui-col-sm8 layui-col-xs12 news-like-container">
+                    <div class="item-title">
+                        <span class="container-title">相关资讯</span>
+                        <a class="fr" href="newsAll.html">更多>></a>
+                    </div>
+                    <div class="item-list">
+                        {volist name="tuiJianArticle" id="tuiJianArticle"}
+                        <a class="layui-row" href="newsDetail.html?aid={$tuiJianArticle.f_article_id}">
+                            <div class="layui-col-xs8 layui-col-sm8 layui-elip">
+                                {$tuiJianArticle.f_article_title}
+                            </div>
+                            <div class="layui-col-xs4 layui-col-sm4 text-r">
+                                {$tuiJianArticle.f_real_time|substr=0,10}
+                            </div>
+                        </a>
+                        {/volist}
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{include file="base/footer" /}
+</body>
+<script src="/static/home/js/global.home.js"></script>
+</html>

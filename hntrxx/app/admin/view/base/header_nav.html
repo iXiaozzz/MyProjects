@@ -1,0 +1,62 @@
+<div class="layui-header header header-admin">
+    <div class="layui-main">
+        <div class="fhuaui-logo">
+            <a class="logo" href="/">
+                <img src="/static/admin/img/OPay.png" alt="FhuAdmin"/>
+            </a>
+        </div>
+        <ul class="layui-nav" id="menu">
+            <li class="layui-nav-item">
+                <a href="javascript:;" data-fid="5">
+                    <i class="fa fa-send-o"></i>
+                    <cite>网站配置</cite>
+                </a>
+            </li>
+            <li class="layui-nav-item">
+                <a href="javascript:;" data-fid="15">
+                    <i class="fa fa-newspaper-o"></i>
+                    <cite>首页配置</cite>
+                </a>
+            </li>
+            <li id="test" class="layui-nav-item">
+                <a href="javascript:;" data-fid="25">
+                    <i class="fa fa-user"></i>
+                    <cite>账号管理</cite>
+                </a>
+            </li>
+        </ul>
+
+        <ul class="layui-nav" style="right:5px;margin:0">
+            <!--<li class="layui-nav-item" id="maxScreen">-->
+            <!--<a href="javascript:;">全屏</a>-->
+            <!--</li>-->
+            <li class="layui-nav-item">
+                <a href="/home" target="_blank">网站首页</a>
+            </li>
+            <li class="layui-nav-item">
+                <a href="javascript:;" class="admin-header-user">
+                    <img src="/static/admin/img/admin/default_head.jpg"
+                         style="width: 40px; height: 40px; border-radius: 100%;"/>
+                    <span>{$adminInfo.admin_name}</span>
+                </a>
+                <dl class="layui-nav-child my_top_menu">
+                    <dd>
+                        <a href="javascript:void(0);" data-url="/admin/content/personal" data-icon="fa fa-user-circle"
+                           title="个人信息" class="frame_Add"><i class="fa fa-user-circle" aria-hidden="true"></i> 个人信息</a>
+                    </dd>
+                    <dd>
+                        <a href="javascript:void(0);" data-url="/admin/content/updateInfo" data-icon="fa fa-gear"
+                           title="修改密码" class="frame_Add"><i class="fa fa-gear" aria-hidden="true"></i> 修改密码</a>
+                    </dd>
+                    <dd>
+                        <a href="javascript:void(0);" data-rturl="/adminLogin.html" data-href="/admin/login/exitLogin"
+                           data-type="doLoginOut" class="do-admin"><i class="fa fa-sign-out" aria-hidden="true"></i> 注销</a>
+                    </dd>
+                </dl>
+            </li>
+        </ul>
+    </div>
+</div>
+<div id="sidebar-side" class="layui-side layui-bg-black">
+    <div id="admin-navbar-side" class="layui-side-scroll" lay-filter="side"></div>
+</div>

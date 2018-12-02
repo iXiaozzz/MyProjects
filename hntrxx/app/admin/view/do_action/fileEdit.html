@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {include file="base/head" title="企业资质"/}
+</head>
+<style>
+    body{
+        padding: 5px;
+    }
+</style>
+<body>
+<form class="layui-form layui-form-pane">
+    <input type="hidden" value="{$fileInfo.f_id}" id="fid">
+    <div class="layui-form-item">
+        <label class="layui-form-label">名称</label>
+        <div class="layui-input-inline">
+            <input type="text" name="title" required lay-verify="required" placeholder="请输入资质名称" autocomplete="off"
+                   maxlength="50" value="{$fileInfo.f_file_title}"
+                   lay-filter="title"
+                   class="layui-input" id="title-text">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">图片</label>
+        <div class="layui-upload">
+            <div>
+                <button type="button" class="layui-btn fl" id="upload1">上传图片</button>
+                <div class="layui-form-mid layui-word-aux">&nbsp;&nbsp;建议图片宽度:720px</div>
+                <div class="layui-clear">&nbsp;</div>
+            </div>
+
+            <div class="layui-upload-list">
+                <!--<div class="layui-upload-img">-->
+                <!--<label class="layui-form-label">&nbsp</label>-->
+                <img class="layui-upload-img" src="{$fileInfo.f_small_file_path}" id="demo1" style="max-width: 512px;">
+                <!--</div>-->
+                <p id="demoText"></p>
+            </div>
+        </div>
+    </div>
+    <button class="layui-btn" lay-submit lay-filter="post">确定</button>
+</form>
+</body>
+<script src="/static/admin/js/global.js"></script>
+<script type="text/javascript">
+    TSCOPE = {
+        "updateFileData_URL": "/api/ApiAdmin/updateFileData"
+        , "updateFileZizhi_URL": "/api/Upload/updateFileZizhi"
+    };
+
+    layui.use(['form', 'common', 'upload'], function () {
+        var $ = layui.jquery
+            , layer = layui.layer
+            , form = layui.form
+            , upload = layui.upload
+            , common = layui.common;
+
+        var imgageSrc = ''
+            , imgageSrc_thumb = ''
+            , bigWidth
+            , bigHeight
+            , imgFlag = 0
+            , fid = $('#fid').val()
+        ;
+        //上传图片
+        var uploadInst = upload.render({
+            elem: '#upload1'
+            , url: TSCOPE.updateFileZizhi_URL
+            , accept: 'images'
+            , data: {id: fid}
+            , exts: 'jpg|png|jpeg'
+            , before: function (obj) {
+                layer.msg('正在上传图片，请稍后...', {
+//                    icon: 1,
+                    time: 0, //2秒关闭（如果不配置，默认是3秒）
+                    shade: 0.3
+                });
+                //预读本地文件示例，不支持ie8
+                obj.preview(function (index, file, result) {
+                    $('#demo1').attr('src', result); //图片链接（base64）
+                });
+            }
+            , done: function (res) {
+                layer.closeAll();
+                //如果上传失败
+                if (res.code > 0) {
+                    return layer.msg(res.msg);
+                }
+                //上传成功
+                imgageSrc = res.data.src;
+                imgageSrc_thumb = res.data.src_thumb;
+                bigWidth = res.data.bigWidth;
+                bigHeight = res.data.bigHeight;
+                imgFlag = res.data.imgFlag;
+            }
+            , error: function () {
+                return layer.msg('上传失败!');
+            }
+        });
+
+        //发表
+        form.on('submit(post)', function (formData) {
+            var data = formData.field;
+            var postData;
+            if (!imgageSrc || !imgageSrc_thumb) {
+                 postData = {
+                    "f_id": fid,
+                    "f_file_title": data.title
+                };
+            }else{
+                 postData = {
+                    "f_id": fid,
+                    "f_file_title": data.title,
+                    "f_large_file_path": imgageSrc,
+                    "f_small_file_path": imgageSrc_thumb,
+                    "f_large_file_width": bigWidth,
+                    "f_large_file_height": bigHeight,
+                    "f_img_flag": imgFlag
+                };
+            }
+            common.ajax(TSCOPE.updateFileData_URL, 'POST', 'JSON', postData, true, function (res) {
+                if (res.code == 1200)
+                    common.layerMsg(1, res.msg, 2000, function () {
+                        window.location.reload();
+                    });
+                else
+                    common.layerAlert(2, res.msg, '提示');
+            });
+            return false;
+        });
+    })
+</script>
+</html>

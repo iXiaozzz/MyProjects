@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  {include file="base/head" title="修改密码"}
+</head>
+
+<body>
+  <div class="fhui-admin-editInfo-container" id="editInfoLayer">
+    <form class="layui-form layui-form-pane">
+      <div class="layui-form-item">
+        <label class="layui-form-label">旧密码</label>
+        <div class="layui-input-inline">
+          <input type="password" name="admin_pwd" lay-verify="required" placeholder="请输入旧密码" autocomplete="off" class="layui-input">
+        </div>
+      </div>
+
+      <div class="layui-form-item">
+        <label class="layui-form-label">新密码</label>
+        <div class="layui-input-inline">
+          <input type="password" name="newpwd" placeholder="请输入密码" autocomplete="off" class="layui-input">
+        </div>
+        <div class="layui-form-mid layui-word-aux">密码长度至少6位</div>
+      </div>
+      <div class="layui-form-item">
+        <label class="layui-form-label">确认密码</label>
+        <div class="layui-input-inline">
+          <input type="password" name="newpwd2" placeholder="请再次输入密码" autocomplete="off" class="layui-input">
+        </div>
+      </div>
+
+      <div class="layui-form-item">
+        <button class="layui-btn" lay-submit lay-filter="submitBtn">确定</button>
+      </div>
+    </form>
+  </div>
+</body>
+<script src="/static/admin/js/global.js"></script>
+<script src="/static/plus/md5.js"></script>
+<script>
+  TSCOPE = {
+    "updateInfo_URL": "/api/ApiAdmin/updateInfo"
+  };
+  layui.use(['common', 'form'], function() {
+    var $ = layui.$,
+      common = layui.common,
+      form = layui.form;
+
+    form.on('submit(submitBtn)', function(data) {
+      var data = data.field,
+        newpwd = $.trim(data.newpwd),
+        newpwd2 = $.trim(data.newpwd2);
+      if (newpwd.length < 6) {
+        common.layerAlert(2, '密码长度小于6位', '提示');
+        return false;
+      }
+
+      if (newpwd != newpwd2) {
+        common.layerAlert(2, '两次密码不一样', '提示');
+        return false;
+      }
+      var postData = {
+        'admin_pwd': hex_md5(data.admin_pwd),
+        'new_pwd': hex_md5(newpwd2)
+      };
+
+      common.ajax(TSCOPE.updateInfo_URL, 'POST', 'JSON', postData, true, function(res) {
+        if (res.code == 1200) {
+          common.layerMsg(1, res.msg, 2000, function() {
+            window.location.reload();
+          })
+        } else {
+          common.layerAlert(2, res.msg, '提示');
+        }
+      });
+      return false;
+    });
+  });
+</script>
+
+</html>

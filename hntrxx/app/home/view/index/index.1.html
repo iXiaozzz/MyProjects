@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {include file="base/head" title="$companyInfo.f_company_name"/}
+    <link rel="stylesheet" href="/static/home/css/index.css">
+</head>
+<body>
+    <!--[if lt IE 9]-->
+    <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
+    <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+{include file="base/header" /}
+<div class="main" id="main">
+    <img class="bg-img layui-hide-xs" src="{$imgPath[0]['f_img_path']|substr=1}" alt="">
+    <div class="blank"></div>
+    <div class="content-container" id="content" style="width: 100%;">
+        <div class="layui-row layui-col-space30 page-width flex-r">
+            <div class="layui-col-xs12 layui-col-sm3">
+                <div class="citem">
+                    <a class="citem-img-box" href="article.html?m=8">
+                        <img class="citem-img" src="{$imgPath[1]['f_img_path']|substr=1}" alt="">
+                    </a>
+                    <dl>
+                        <dt class="ctitle">企业介绍</dt>
+                        <dd class="cdesc company-intro">
+                            {$companyInfo.f_company_intro|substr=0,227}...
+                        </dd>
+                    </dl>
+                </div>
+            </div>
+            <div class="layui-col-xs12 layui-col-sm3">
+                <div class="citem">
+                    <a class="citem-img-box" href="newsAll.html">
+                        {if condition="$firstImg neq ''"}
+                        <img class="citem-img" src="{$imgPath[2]['f_img_path']|substr=1}" alt="">
+                        {else /}
+                        <img class="citem-img" src="/static/img/default_news.jpg" alt="">
+                        {/if}
+                    </a>
+                    <dl>
+                        <dt class="ctitle"><a href="news.html?m=13" class="font-bai">新闻中心</a></dt>
+                        <dd class="cdesc">
+                            <ul>
+                                {volist name="newsList" id="newsList"}
+                                <li>
+                                    <a class="layui-row" href="newsDetail.html?aid={$newsList.f_article_id}" title="{$newsList.f_article_title}">
+                                        <div class="layui-col-xs8 layui-col-sm8 layui-elip">
+                                            {$newsList.f_article_title}
+                                        </div>
+                                        <div class="layui-col-xs4 layui-col-sm4 text-r">
+                                            {$newsList.f_real_time|substr=0,10}
+                                        </div>
+                                    </a>
+                                </li>
+                                {/volist}
+                            </ul>
+                        </dd>
+                    </dl>
+                </div>
+            </div>
+            <div class="layui-col-xs12 layui-col-sm3">
+                <div class="citem">
+                    <a class="citem-img-box" href="article.html?m=15">
+                        <img class="citem-img" src="{$imgPath[3]['f_img_path']|substr=1}" alt="">
+                    </a>
+                    <dl>
+                        <dt class="ctitle">业务范围</dt>
+                        <dd class="cdesc">
+                            <ul class="layui-row">
+                                {volist name="yeWu" id="yeWu"}
+                                <li class="layui-col-xs6 layui-elip">
+                                    <i class="layui-icon">&#xe617;</i>
+                                    <a href="{$yeWu.f_url}" title="{$yeWu.f_menu_name}">{$yeWu.f_menu_name}</a>
+                                </li>
+                                {/volist}
+                            </ul>
+                        </dd>
+                    </dl>
+                </div>
+
+            </div>
+            <div class="layui-col-xs12 layui-col-sm3">
+                <div class="citem">
+                    <a class="citem-img-box" href="productAndSolution.html">
+                        <img class="citem-img" src="{$imgPath[4]['f_img_path']|substr=1}" alt="">
+                    </a>
+                    <dl>
+                        <dt class="ctitle">解决方案</dt>
+                        <dd class="cdesc">
+                            <ul class="layui-row">
+                                {volist name="jieJue" id="jieJue"}
+                                <li class="layui-col-xs6 layui-elip">
+                                    <i class="layui-icon">&#xe617;</i>
+                                    <a href="{$jieJue.f_url}" title="{$jieJue.f_menu_name}">{$jieJue.f_menu_name}</a>
+                                </li>
+                                {/volist}
+                            </ul>
+                        </dd>
+                    </dl>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{include file="base/footer" /}
+</body>
+<script src="/static/home/js/global.home.js"></script>
+<script>
+    // window.onload = function(){
+    //     var omain = document.getElementById('main');
+    //     omain.style.background = "url({$imgPath[0]['f_img_path']|substr=1}) no-repeat";
+    //     omain.style.backgroundSize = "100%";
+    // }
+   
+    // layui.use(['jquery'], function () {
+    //     var $ = layui.jquery;
+    //     $('#main').css({"background": "url({$imgPath[0]['f_img_path']|substr=1}) 100% 100% no-repeat"});
+    // })
+
+    
+</script>
+</html>

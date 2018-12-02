@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {include file="base/head" title="管理产品及解决方案"}
+</head>
+<body>
+<div class="main-wrap">
+    <div class="y-role">
+        <!--工具栏-->
+        <div class="layui-btn-group demoTable">
+            <!--<button class="layui-btn layui-btn-sm do-action" data-type="delete" data-belong="file"-->
+            <!--data-url="/api/ApiAdmin/fileListDeleteById"><i-->
+            <!--class="fa fa-trash-o"></i>删除-->
+            <!--</button>-->
+            <button class="layui-btn layui-btn-sm do-action" data-type="doRefresh"><i
+                    class="fa fa-refresh"></i>刷新
+            </button>
+        </div>
+        <table id="tableList" lay-filter="tableList"></table>
+        <script type="text/html" id="barTest">
+            <a class="layui-btn layui-btn-primary layui-btn-xs" data-type="file"
+               data-url="/admin/DoAction/productionAndSolutionCheck?id="
+               lay-event="detail">查看</a>
+            <a class="layui-btn layui-btn-xs" data-type="production" data-url="/admin/DoAction/productionAndSolutionEdit?id="
+               lay-event="edit">编辑</a>
+            <!--<a class="layui-btn layui-btn-danger layui-btn-xs" data-type="file"-->
+            <!--data-url="/admin/DoAction/fileDeleteById?id="-->
+            <!--lay-event="del">删除</a>-->
+        </script>
+    </div>
+</div>
+</body>
+<script src="/static/admin/js/global.js"></script>
+<script>
+    TSCOP = {
+        'fileSetOrder_URL': '/api/ApiAdmin/fileSetOrder'
+    };
+    layui.use(['table', 'jquery'], function () {
+        var $ = layui.jquery
+            , table = layui.table;
+
+        table.render({
+            elem: '#tableList'
+//            , height: 400
+            , url: '/api/ApiAdmin/productionAndSolutionList' //数据接口
+            , even: false //若不开启隔行背景，不设置该参数即可
+            , skin: ''
+            , page: true //开启分页
+//            , where: {type: 12}// 11代表资质   12代表荣誉
+            , limit: 10
+            , cols: [[ //表头
+//                {type: 'checkbox', fiexd: 'left'}
+//                , {field: 'f_id', title: 'ID', width: 80, sort: true}
+                {field: 'f_menu_name', title: '名称'}
+//                , {field: 'f_order', title: '排序(从小到大,可修改)', edit: 'text', width: 220, sort: true}
+//                , {
+//                    field: 'f_order', title: '排序(从小到大)', width: 150, sort: true, templet: function (d) {
+//                        return `<input type="text" name="f_order" placeholder="数值越小越靠前" value="${d.f_order}" autocomplete="off" class="layui-input fl" style="width: 65px;height: 25px;margin-right: 5px;" disabled>
+//                                <button class="layui-btn layui-btn-lg layui-btn-xs order-btn fl" style="position:relative;bottom: -1px;">修改</button>`;
+//                    }
+//                }
+                , {field: 'f_create_time', title: '创建时间', width: 200, sort: true}
+                , {fixed: 'right', title: '操作', align: 'center', width: 150, toolbar: '#barTest'}
+            ]]
+        });
+
+    });
+</script>
+</html>

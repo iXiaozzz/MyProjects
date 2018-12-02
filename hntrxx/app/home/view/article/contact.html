@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {include file="base/head" title="$companyInfo.f_company_name"/}
+    <link rel="stylesheet" href="/static/home/css/article.css">
+</head>
+<body>
+<!--[if lt IE 9]-->
+<script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
+<script src="/static/common/js/respond.min.js"></script>
+
+<![endif]-->
+{include file="base/header" /}
+<div class="main" id="main">
+    <input type="hidden" id="menuId" value="{$menuId}">
+    <div class="layui-row page-width layui-col-space30">
+        <div class="layui-col-sm3 sub-nav layui-hide-xs">
+            <div class="layui-row">
+                {include file="base/article_nav" /}
+                {include file="base/contact_nav" /}
+            </div>
+        </div>
+        <div class="layui-col-sm9 content-container">
+            <div class="layui-row">
+                {include file="base/article_breadcrumb" /}
+                <div class="layui-col-sm12">
+                    <div class="layui-row">
+                        <div class="layui-col-sm6 layui-col-xs12">
+                            <table class="layui-table" lay-skin="nob">
+                                <tbody>
+                                <tr>
+                                    <td style="color: #000;font-weight: bold;">{$companyInfo.f_company_name}</td>
+                                </tr>
+                                <tr>
+                                    <td>电话：{$companyInfo.f_tel}</td>
+                                </tr>
+                                <tr>
+                                    <td>传真：{$companyInfo.f_fax}</td>
+                                </tr>
+                                <tr>
+                                    <td>邮箱：{$companyInfo.f_email}</td>
+                                </tr>
+                                <tr>
+                                    <td>网址：<a href="{$companyInfo.f_website_url}" target="_blank">{$companyInfo.f_website_url}</a></td>
+                                </tr>
+                                <tr>
+                                    <td>地址：{$companyInfo.f_address}</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="layui-col-sm6 layui-col-xs12">
+                            <div class="map" id="map"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{include file="base/footer" /}
+</body>
+<script src="/static/home/js/global.home.js"></script>
+<script type="text/javascript" src="http://webapi.amap.com/maps?v=1.3&key=b406813f75c7e7e073197c71b0a5e3af"></script>
+
+<script>
+    var map = new AMap.Map('map', {
+        resizeEnable: true,
+        zoom: 14,
+        mapStyle: 'normal', //设置地图样式
+        center: [113.0184800000, 28.1417100000]
+    });
+    AMap.plugin(['AMap.ToolBar', 'AMap.Scale', 'AMap.OverView'],
+        function () {
+            map.addControl(new AMap.ToolBar());
+            map.addControl(new AMap.Scale());
+//                    map.addControl(new AMap.OverView({isOpen:true}));
+        });
+    var marker = new AMap.Marker({
+        position: [113.0184800000, 28.1417100000],
+        title: '湖南天瑞通信技术有限公司',
+        map: map,
+        topWhenClick: true,
+        animation: 'AMAP_ANIMATION_DROP'
+    });
+</script>
+
+</html>

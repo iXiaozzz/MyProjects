@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {include file="base/head" title=""/}
+</head>
+<style>
+    .main {
+        margin: 5px;
+    }
+
+    .production-img {
+        margin-left: 5px;
+        max-width: 312px;
+    }
+
+    .upload-box {
+        padding: 10px 5px;
+    }
+</style>
+<body>
+<div class="main">
+    <img id="demo1" class="production-img" src="{$imgPath[0]['f_img_path']|substr=1}" alt="正在加载...">
+    <div class="upload-box">
+        <button type="button" class="layui-btn fl" id="upload1">更换图片</button>
+        <div class="layui-form-mid layui-word-aux">&nbsp;&nbsp;建议图片大小:512x320</div>
+        <div class="layui-clear">&nbsp;</div>
+    </div>
+    <img id="demo2" class="production-img" src="{$imgPath[1]['f_img_path']|substr=1}" alt="正在加载...">
+    <div class="upload-box">
+        <button type="button" class="layui-btn fl" id="upload2">更换图片</button>
+        <div class="layui-form-mid layui-word-aux">&nbsp;&nbsp;建议图片大小:512x320</div>
+        <div class="layui-clear">&nbsp;</div>
+    </div>
+    <img id="demo3" class="production-img" src="{$imgPath[2]['f_img_path']|substr=1}" alt="正在加载...">
+    <div class="upload-box">
+        <button type="button" class="layui-btn fl" id="upload3">更换图片</button>
+        <div class="layui-form-mid layui-word-aux">&nbsp;&nbsp;建议图片大小:512x320</div>
+        <div class="layui-clear">&nbsp;</div>
+    </div>
+    <img id="demo4" class="production-img" src="{$imgPath[3]['f_img_path']|substr=1}" alt="正在加载...">
+    <div class="upload-box">
+        <button type="button" class="layui-btn fl" id="upload4">更换图片</button>
+        <div class="layui-form-mid layui-word-aux">&nbsp;&nbsp;建议图片大小:512x320</div>
+        <div class="layui-clear">&nbsp;</div>
+    </div>
+</div>
+</body>
+<script src="/static/admin/js/global.js"></script>
+<script>
+    TSCOPE = {
+        "homeModuleImg_URL": "/api/Upload/moduleImg"
+    };
+    layui.use(['common', 'upload'], function () {
+        var $ = layui.jquery
+            , layer = layui.layer
+            , upload = layui.upload
+            , common = layui.common;
+        var uploadInst1 = upload.render({
+            elem: '#upload1'
+            , url: TSCOPE.homeModuleImg_URL + '?id=2'
+            , accept: 'images'
+            , exts: 'jpg|png|jpeg'
+            , before: function (obj) {
+                layer.msg('正在上传图片，请稍后...', {
+//                    icon: 1,
+                    time: 0, //2秒关闭（如果不配置，默认是3秒）
+                    shade: 0.3
+                });
+                //预读本地文件示例，不支持ie8
+                obj.preview(function (index, file, result) {
+                    $('#demo1').attr('src', result); //图片链接（base64）
+                });
+            }
+            , done: function (res) {
+                layer.closeAll();
+                return layer.msg(res.msg);
+            }
+            , error: function (res) {
+                layer.msg(res.msg);
+            }
+        });
+        var uploadInst2 = upload.render({
+            elem: '#upload2'
+            , url: TSCOPE.homeModuleImg_URL + '?id=3'
+            , accept: 'images'
+            , exts: 'jpg|png|jpeg'
+            , before: function (obj) {
+                layer.msg('正在上传图片，请稍后...', {
+//                    icon: 1,
+                    time: 0, //2秒关闭（如果不配置，默认是3秒）
+                    shade: 0.3
+                });
+                //预读本地文件示例，不支持ie8
+                obj.preview(function (index, file, result) {
+                    $('#demo2').attr('src', result); //图片链接（base64）
+                });
+            }
+            , done: function (res) {
+                layer.closeAll();
+                return layer.msg(res.msg);
+            }
+            , error: function (res) {
+                layer.msg(res.msg);
+            }
+        });
+        var uploadInst3 = upload.render({
+            elem: '#upload3'
+            , url: TSCOPE.homeModuleImg_URL + '?id=4'
+            , accept: 'images'
+            , exts: 'jpg|png|jpeg'
+            , before: function (obj) {
+                layer.msg('正在上传图片，请稍后...', {
+//                    icon: 1,
+                    time: 0, //2秒关闭（如果不配置，默认是3秒）
+                    shade: 0.3
+                });
+                //预读本地文件示例，不支持ie8
+                obj.preview(function (index, file, result) {
+                    $('#demo3').attr('src', result); //图片链接（base64）
+                });
+            }
+            , done: function (res) {
+                layer.closeAll();
+                return layer.msg(res.msg);
+            }
+            , error: function (res) {
+                layer.msg(res.msg);
+            }
+        });
+        var uploadInst4 = upload.render({
+            elem: '#upload4'
+            , url: TSCOPE.homeModuleImg_URL + '?id=5'
+            , accept: 'images'
+            , exts: 'jpg|png|jpeg'
+            , before: function (obj) {
+                layer.msg('正在上传图片，请稍后...', {
+//                    icon: 1,
+                    time: 0, //2秒关闭（如果不配置，默认是3秒）
+                    shade: 0.3
+                });
+                //预读本地文件示例，不支持ie8
+                obj.preview(function (index, file, result) {
+                    $('#demo4').attr('src', result); //图片链接（base64）
+                });
+            }
+            , done: function (res) {
+                layer.closeAll();
+                return layer.msg(res.msg);
+            }
+            , error: function (res) {
+                layer.msg(res.msg);
+            }
+        });
+    });
+</script>
+</html>

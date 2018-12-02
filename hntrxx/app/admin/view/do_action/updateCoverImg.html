@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {include file="base/head" title="修改新闻封面"/}
+</head>
+<style>
+    .main {
+        margin: 5px;
+    }
+
+    .production-img {
+        margin-left: 5px;
+        width: 280px;
+    }
+
+    .upload-box {
+        padding: 10px 5px;
+    }
+</style>
+
+<body>
+<div class="main">
+    <form class="layui-form layui-form-pane">
+        <input type="hidden" name="f_id" value="{$info.f_id}" id="fid">
+        <div class="layui-form-item">
+            <!-- <div class="layui-input-block"> -->
+            {if condition="$info.f_cover_img_path neq ''"}
+            <img id="demo1" class="production-img" src="{$info.f_cover_img_path | substr=1}" alt="正在加载...">
+            {if condition="$info.f_cover_yuantu_path neq ''"}
+            <p style="margin: 5px 0 0 3px;">
+                <a href="javacript:;" id="preview">预览</a>
+            </p>
+            {/if}
+            {else /}
+            <img id="demo1" class="production-img" src="/static/img/zanwu.png" alt="正在加载...">
+            {/if}
+            <div class="upload-box">
+                <button type="button" class="layui-btn fl" id="upload1">更换图片</button>
+                <div class="layui-form-mid layui-word-aux">&nbsp;&nbsp;建议图片大小:412x292</div>
+                <div class="layui-clear">&nbsp;</div>
+            </div>
+        </div>
+        {if condition="$info.f_cover_yuantu_path neq ''"}
+        <div class="layui-hide" id="previewContent">
+            <img src="{$info.f_cover_yuantu_path | substr=1}" alt="" style="width: 400px;">
+            <p style="text-align: center;margin-top: 5px;">
+                <a class="layui-btn" download="{$info.f_cover_yuantu_path | substr=32}"
+                   href="{$info.f_cover_img_path | substr=1}">下载封面</a>
+            </p>
+        </div>
+        {/if}
+    </form>
+</div>
+</body>
+<script src="/static/admin/js/global.js"></script>
+<script>
+    TSCOPE = {
+        "articleCoverImg_URL": "/api/Upload/articleCoverImg"
+    };
+    layui.use(['common', 'upload','layer'], function () {
+        var $ = layui.jquery,
+            layer = layui.layer,
+            upload = layui.upload,
+            common = layui.common;
+//        var isSupportDownload = 'download' in document.createElement('a');
+
+        var id = $('#fid').val();
+        upload.render({
+            elem: '#upload1',
+            url: TSCOPE.articleCoverImg_URL,
+            accept: 'images',
+            exts: 'jpg|png|jpeg',
+            data: {
+                id: id
+            },
+            before: function (obj) {
+                layer.msg('正在上传图片，请稍后...', {
+                    //                    icon: 1,
+                    time: 0, //2秒关闭（如果不配置，默认是3秒）
+                    shade: 0.3
+                });
+                //预读本地文件示例，不支持ie8
+                obj.preview(function (index, file, result) {
+                    $('#demo1').attr('src', result); //图片链接（base64）
+                });
+            },
+            done: function (res) {
+                layer.closeAll();
+                return layer.msg(res.msg);
+            }
+        });
+
+       if($('#previewContent').length){
+           var previewContent = $('#previewContent').html();
+           $('#preview').on('click',function(){
+               if($())
+                   layer.open({
+                       type: 1,
+                       title: false,
+                       offset: '10px',
+                       area:['400px','320px'],
+//                area: 'auto',
+                       shadeClose: true, //点击遮罩关闭
+                       content: previewContent,
+                       success: function (elem) {
+//                    element.render('nav', 'nav-left');
+                       }
+                   });
+           });
+       }
+    });
+</script>
+
+</html>

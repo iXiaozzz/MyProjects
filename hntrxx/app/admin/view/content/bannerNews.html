@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {include file="base/head" title=""/}
+</head>
+<style>
+    .main {
+        margin: 5px;
+    }
+
+    .production-img {
+        margin-left: 5px;
+        max-width: 720px;
+    }
+
+    .upload-box {
+        padding: 10px 5px;
+    }
+</style>
+<body>
+<div class="main">
+    <img id="demo1" class="production-img" src="{$bannerPath|substr=1}" alt="正在加载...">
+    <div class="upload-box">
+        <button type="button" class="layui-btn fl" id="upload1">更换图片</button>
+        <div class="layui-form-mid layui-word-aux">&nbsp;&nbsp;建议图片宽度:900x320</div>
+        <div class="layui-clear">&nbsp;</div>
+    </div>
+</div>
+</body>
+<script src="/static/admin/js/global.js"></script>
+<script>
+    TSCOPE = {
+        "bannerNews_URL": "/api/Upload/bannerNews"
+    };
+    layui.use(['common', 'upload'], function () {
+        var $ = layui.jquery
+            , upload = layui.upload
+            , common = layui.common;
+        var id = $('#fid').val();
+        var uploadInst = upload.render({
+            elem: '#upload1'
+            , url: TSCOPE.bannerNews_URL
+            , accept: 'images'
+            , exts: 'jpg|png|jpeg'
+            , data: {
+                id: id
+            }
+            , before: function (obj) {
+                layer.msg('正在上传图片，请稍后...', {
+//                    icon: 1,
+                    time: 0, //2秒关闭（如果不配置，默认是3秒）
+                    shade: 0.3
+                });
+                //预读本地文件示例，不支持ie8
+                obj.preview(function (index, file, result) {
+                    $('#demo1').attr('src', result); //图片链接（base64）
+                });
+            }
+            , done: function (res) {
+                layer.closeAll();
+                return layer.msg(res.msg);
+            }
+            , error: function () {
+                layer.msg('上传失败！');
+                //演示失败状态，并实现重传
+//                var demoText = $('#demoText');
+//                demoText.html('<label class="layui-form-label">&nbsp</label> <a class="layui-btn layui-btn-mini demo-reload">重试</a><span style="color: #FF5722;">上传失败</span>');
+//                demoText.find('.demo-reload').on('click', function () {
+//                    uploadInst.upload();
+//                });
+            }
+        });
+    });
+</script>
+</html>

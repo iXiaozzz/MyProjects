@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {include file="base/head" title="文字展示"/}
+</head>
+<body>
+<div class="main-wrap">
+    <!--<blockquote class="layui-elem-quote fhui-admin-main_hd">-->
+        <!--<h2>{$moduleInfo[0]['f_name']}</h2>-->
+    <!--</blockquote>-->
+    <div class="y-role">
+        <!--工具栏-->
+        <div id="floatHead" class="toolbar-wrap">
+            <div class="toolbar">
+                <div class="box-wrap">
+                    <a class="menu-btn"></a>
+                    <div class="l-list">
+                        <a class="layui-btn layui-btn-small do-action" data-type="doAdd"
+                           data-href="/admin/ManageWord/addWordDis" data-title="新增文字"><i
+                                class="fa fa-plus"></i>新增</a>
+                        <a class="layui-btn layui-btn-small do-action" data-type="doBatchDelete"
+                           data-href="/admin/ManageWord/doBatchDelete"><i class="fa fa-trash-o"></i>删除</a>
+                        <a class="layui-btn layui-btn-small do-action" data-type="doRefresh" data-href="">
+                            <i class="fa fa-refresh"></i>刷新</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--表格-->
+        <div class="fhui-admin-table-container">
+            <table class="layui-table" lay-skin="line">
+                <colgroup>
+                    <col width="2%">
+                    <col width="60">
+                    <col width="15%">
+                    <col width="">
+                    <col width="8%">
+                    <col width="12%">
+                    <col width="8%">
+                    <col width="8%">
+                </colgroup>
+                <thead>
+                <tr>
+                    <th class="icheck">
+                        <input type="checkbox" id="selected-all"/>
+                    </th>
+                    <th>序号</th>
+                    <th>标题</th>
+                    <th>内容</th>
+                    <th>按钮名称</th>
+                    <th>详情页面</th>
+                    <th style="text-align:center">是否推荐</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                {volist name="moduleInfo" id="moduleInfo" key="k"}
+                <tr>
+                    <td class="icheck">
+                        <input id="ck{$moduleInfo.f_id}" ids="{$moduleInfo.f_id}" name="ck" type="checkbox"
+                               value="true"/>
+                        <input name="ck" type="hidden" value="false"/>
+                    </td>
+                    <td>{$k}</td>
+                    <td>{$moduleInfo.f_title}</td>
+                    <td>{$moduleInfo.f_content}</td>
+                    <td>
+                        {if condition="$moduleInfo.f_btn_value neq ''"}
+                        {$moduleInfo.f_btn_value}
+                        {else /}
+                        无
+                        {/if}
+                    </td>
+                    <td class="stopRow">
+                        <div class="layui-form">
+                            <select name="city" lay-filter="optArticle">
+                                {if condition="count($aList) eq 0"}
+                                <option value="">请新建文章</option>
+                                {else/}
+                                <option value="{$moduleInfo.f_id}/0">无</option>
+                                {foreach $aList as $vo}
+                                {if condition="$moduleInfo.f_article_id eq $vo.f_id"}
+                                <option value="{$moduleInfo.f_id}/{$vo.f_id}" selected>{$vo.f_article_title}</option>
+                                {else/}
+                                <option value="{$moduleInfo.f_id}/{$vo.f_id}">{$vo.f_article_title}</option>
+                                {/if}
+                                {/foreach}
+                                {/if}
+                            </select>
+                        </div>
+                    </td>
+                    <td align="center" class="stopRow">
+                        <div class="layui-form">
+                            {if condition="$moduleInfo.f_top eq 1"}
+                            <input name="isUse" type="checkbox" value="{$moduleInfo.f_id}" checked=""
+                                   lay-skin="switch" lay-filter="switch" lay-text="ON|OFF">
+                            {else /}
+                            <input name="isUse" type="checkbox" value="{$moduleInfo.f_id}" lay-skin="switch"
+                                   lay-filter="switch" lay-text="ON|OFF">
+                            {/if}
+                        </div>
+                    </td>
+                    <td>
+                        <a class="layui-btn layui-btn-small do-action" data-type="doEdit"
+                           data-href="/admin/ManageWord/editWordDis?fid={$moduleInfo.f_id}" data-title="编辑文字">
+                            <i class="icon-edit fa fa-pencil-square-o"></i>编辑</a>
+                    </td>
+                </tr>
+                {/volist}
+                </tbody>
+            </table>
+        </div>
+        <!--分页-->
+        <!--<div class="fhui-admin-pagelist">-->
+        <!--<div id="page"></div>-->
+        <!--</div>-->
+    </div>
+</div>
+</body>
+<script src="/static/admin/js/global.js"></script>
+<script src="/static/admin/js/list.js"></script>
+<script>
+    TSCOPE = {
+        "wordDisTop_url": "/admin/ManageWord/wordDisTop"//是否推荐
+        , "optArticleWord_url": "/admin/Article/optArticleWord"
+    };
+    layui.use(['form', 'common'], function () {
+        var $ = layui.jquery
+            , form = layui.form()
+            , common = layui.common;
+        //监测开关
+//        form.on('switch(switch)', function (data) {
+//            var sendData = {"id": data.value};
+//            switch (data.elem.checked) {
+//                case false:
+//                    sendData.status = 0;
+//                    break;
+//                case true:
+//                    sendData.status = 1;
+//                    break;
+//            }
+//            common.ajaxCallback(TSCOPE.wordDisTop_url, 'POST', 'json', sendData, common.disMessage);
+//        });
+        common.formSwitch(TSCOPE.wordDisTop_url);
+        common.formSelect(TSCOPE.optArticleWord_url);//选择文章
+
+    });
+</script>
+</html>

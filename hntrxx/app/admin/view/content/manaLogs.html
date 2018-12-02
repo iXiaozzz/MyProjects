@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {include file="base/head" title="管理日志"}
+</head>
+<body>
+<div class="main-wrap">
+    <blockquote class="layui-elem-quote fhui-admin-main_hd">
+        <h2>管理日志</h2>
+    </blockquote>
+    <div class="y-role">
+        <!--工具栏-->
+        <div id="floatHead" class="toolbar-wrap">
+            <div class="toolbar">
+                <div class="box-wrap">
+                    <div class="l-list">
+                        <a class="layui-btn layui-btn-small do-action" data-type="doBatchDelete"
+                           data-href="/_Admin/DelLogs"><i class="fa fa-trash"></i>保留最近30天日志</a>
+                        <a class="layui-btn layui-btn-small do-action" data-type="doRefresh"
+                           data-href="/admin/content/manaLogs"><i class="fa fa-refresh fa-spin"></i>重新载入</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--/工具栏-->
+        <div class="fhui-admin-table-container">
+            <form action="/_Admin/ManaLogs" class="form-horizontal" id="formrec" method="post" role="form">
+                <table class="layui-table" lay-skin="line">
+                    <colgroup>
+                        <col width="50">
+                        <col width="100">
+                        <col width="100">
+                        <col>
+                        <col width="85">
+                        <col width="85">
+                        <col width="80">
+                        <col width="140">
+                        <col width="180">
+                    </colgroup>
+                    <thead>
+                    <tr>
+                        <th>
+                            <input type="checkbox" id="selected-all"/>
+                        </th>
+                        <th>用户名</th>
+                        <th>操作类型</th>
+                        <th>备注</th>
+                        <th>浏览器</th>
+                        <th>平台</th>
+                        <th>设备</th>
+                        <th>用户IP</th>
+                        <th>日期</th>
+                    </tr>
+                    </thead>
+                    <tbody id="msg">
+                    <tr>
+                        <td>
+                            <input id="ck" ids="12054" name="ck" type="checkbox" value="true"/><input name="ck"
+                                                                                                      type="hidden"
+                                                                                                      value="false"/>
+                        </td>
+                        <td><a href="ManaLogs?keywords=demo">demo</a></td>
+                        <td><a href="ManaLogs?keywords=Login">Login</a></td>
+                        <td>用户登陆成功.</td>
+                        <td>Firefox</td>
+                        <td>Windows</td>
+                        <td>PC</td>
+                        <td><a href="ManaLogs?keywords=127.0.0.1">127.0.0.1</a></td>
+                        <td>2017-01-16 21:09:16</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input id="ck2" ids="12053" name="ck" type="checkbox" value="true"/><input name="ck"
+                                                                                                      type="hidden"
+                                                                                                      value="false"/>
+                        </td>
+                        <td><a href="ManaLogs?keywords=demo">demo</a></td>
+                        <td><a href="ManaLogs?keywords=Login">Login</a></td>
+                        <td>用户登陆失败：密码错误.</td>
+                        <td>Firefox</td>
+                        <td>Windows</td>
+                        <td>PC</td>
+                        <td><a href="ManaLogs?keywords=127.0.0.1">127.0.0.1</a></td>
+                        <td>2017-01-16 21:09:16</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input id="ck3" ids="12052" name="ck" type="checkbox" value="true"/><input name="ck"
+                                                                                                      type="hidden"
+                                                                                                      value="false"/>
+                        </td>
+                        <td><a href="ManaLogs?keywords=demo">demo</a></td>
+                        <td><a href="ManaLogs?keywords=Login">Login</a></td>
+                        <td>用户登陆成功.</td>
+                        <td>Firefox</td>
+                        <td>Windows</td>
+                        <td>PC</td>
+                        <td><a href="ManaLogs?keywords=127.0.0.1">127.0.0.1</a></td>
+                        <td>2017-01-16 21:07:16</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input id="ck4" ids="12051" name="ck" type="checkbox" value="true"/><input name="ck"
+                                                                                                      type="hidden"
+                                                                                                      value="false"/>
+                        </td>
+                        <td><a href="ManaLogs?keywords=demo">demo</a></td>
+                        <td><a href="ManaLogs?keywords=Login">Login</a></td>
+                        <td>用户登陆失败：密码错误.</td>
+                        <td>Firefox</td>
+                        <td>Windows</td>
+                        <td>PC</td>
+                        <td><a href="ManaLogs?keywords=127.0.0.1">127.0.0.1</a></td>
+                        <td>2017-01-16 21:07:16</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input id="ck5" ids="12038" name="ck" type="checkbox" value="true"/><input name="ck"
+                                                                                                      type="hidden"
+                                                                                                      value="false"/>
+                        </td>
+                        <td><a href="ManaLogs?keywords=dfg">dfg</a></td>
+                        <td><a href="ManaLogs?keywords=Login">Login</a></td>
+                        <td>用户登陆失败：账号不存在.</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td><a href="ManaLogs?keywords=127.0.0.1">127.0.0.1</a></td>
+                        <td>2017-01-16 12:16:16</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input id="ck6" ids="12037" name="ck" type="checkbox" value="true"/><input name="ck"
+                                                                                                      type="hidden"
+                                                                                                      value="false"/>
+                        </td>
+                        <td><a href="ManaLogs?keywords=sdf">sdf</a></td>
+                        <td><a href="ManaLogs?keywords=Login">Login</a></td>
+                        <td>用户登陆失败：账号不存在.</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td><a href="ManaLogs?keywords=127.0.0.1">127.0.0.1</a></td>
+                        <td>2017-01-16 12:05:16</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input id="ck7" ids="12036" name="ck" type="checkbox" value="true"/><input name="ck"
+                                                                                                      type="hidden"
+                                                                                                      value="false"/>
+                        </td>
+                        <td><a href="ManaLogs?keywords=sdfsd">sdfsd</a></td>
+                        <td><a href="ManaLogs?keywords=Login">Login</a></td>
+                        <td>用户登陆失败：账号不存在.</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td><a href="ManaLogs?keywords=127.0.0.1">127.0.0.1</a></td>
+                        <td>2017-01-16 12:05:16</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input id="ck8" ids="12035" name="ck" type="checkbox" value="true"/><input name="ck"
+                                                                                                      type="hidden"
+                                                                                                      value="false"/>
+                        </td>
+                        <td><a href="ManaLogs?keywords=sdfsd">sdfsd</a></td>
+                        <td><a href="ManaLogs?keywords=Login">Login</a></td>
+                        <td>用户登陆失败：账号不存在.</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td><a href="ManaLogs?keywords=127.0.0.1">127.0.0.1</a></td>
+                        <td>2017-01-16 12:05:16</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input id="ck9" ids="12034" name="ck" type="checkbox" value="true"/><input name="ck"
+                                                                                                      type="hidden"
+                                                                                                      value="false"/>
+                        </td>
+                        <td><a href="ManaLogs?keywords=sdf">sdf</a></td>
+                        <td><a href="ManaLogs?keywords=Login">Login</a></td>
+                        <td>用户登陆失败：账号不存在.</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td><a href="ManaLogs?keywords=127.0.0.1">127.0.0.1</a></td>
+                        <td>2017-01-16 12:02:16</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input id="ck10" ids="12033" name="ck" type="checkbox" value="true"/><input name="ck"
+                                                                                                      type="hidden"
+                                                                                                      value="false"/>
+                        </td>
+                        <td><a href="ManaLogs?keywords=demo">demo</a></td>
+                        <td><a href="ManaLogs?keywords=Login">Login</a></td>
+                        <td>用户登陆成功.</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td><a href="ManaLogs?keywords=127.0.0.1">127.0.0.1</a></td>
+                        <td>2017-01-14 10:54:14</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input id="ck11" ids="12030" name="ck" type="checkbox" value="true"/><input name="ck"
+                                                                                                      type="hidden"
+                                                                                                      value="false"/>
+                        </td>
+                        <td><a href="ManaLogs?keywords=demo">demo</a></td>
+                        <td><a href="ManaLogs?keywords=Login">Login</a></td>
+                        <td>用户登陆成功.</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td><a href="ManaLogs?keywords=127.0.0.1">127.0.0.1</a></td>
+                        <td>2017-01-14 01:24:14</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input id="ck12" ids="12027" name="ck" type="checkbox" value="true"/><input name="ck"
+                                                                                                      type="hidden"
+                                                                                                      value="false"/>
+                        </td>
+                        <td><a href="ManaLogs?keywords=demo">demo</a></td>
+                        <td><a href="ManaLogs?keywords=Login">Login</a></td>
+                        <td>用户登陆成功.</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td><a href="ManaLogs?keywords=127.0.0.1">127.0.0.1</a></td>
+                        <td>2017-01-14 01:20:14</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input id="ck13" ids="11997" name="ck" type="checkbox" value="true"/><input name="ck"
+                                                                                                      type="hidden"
+                                                                                                      value="false"/>
+                        </td>
+                        <td><a href="ManaLogs?keywords=webcmc">webcmc</a></td>
+                        <td><a href="ManaLogs?keywords=Login">Login</a></td>
+                        <td>用户登陆失败：账号不存在.</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td><a href="ManaLogs?keywords=127.0.0.1">127.0.0.1</a></td>
+                        <td>2017-01-13 22:54:13</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input id="ck14" ids="11996" name="ck" type="checkbox" value="true"/><input name="ck"
+                                                                                                      type="hidden"
+                                                                                                      value="false"/>
+                        </td>
+                        <td><a href="ManaLogs?keywords=demo">demo</a></td>
+                        <td><a href="ManaLogs?keywords=Login">Login</a></td>
+                        <td>用户登陆成功.</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td><a href="ManaLogs?keywords=127.0.0.1">127.0.0.1</a></td>
+                        <td>2017-01-13 22:54:13</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input id="ck15" ids="11995" name="ck" type="checkbox" value="true"/><input name="ck"
+                                                                                                      type="hidden"
+                                                                                                      value="false"/>
+                        </td>
+                        <td><a href="ManaLogs?keywords=demo">demo</a></td>
+                        <td><a href="ManaLogs?keywords=Login">Login</a></td>
+                        <td>用户登陆成功.</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td><a href="ManaLogs?keywords=127.0.0.1">127.0.0.1</a></td>
+                        <td>2017-01-13 22:49:13</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input id="ck16" ids="11994" name="ck" type="checkbox" value="true"/><input name="ck"
+                                                                                                      type="hidden"
+                                                                                                      value="false"/>
+                        </td>
+                        <td><a href="ManaLogs?keywords=demo">demo</a></td>
+                        <td><a href="ManaLogs?keywords=Login">Login</a></td>
+                        <td>用户登陆失败：密码错误.</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td><a href="ManaLogs?keywords=127.0.0.1">127.0.0.1</a></td>
+                        <td>2017-01-13 22:49:13</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input id="ck17" ids="11993" name="ck" type="checkbox" value="true"/><input name="ck"
+                                                                                                      type="hidden"
+                                                                                                      value="false"/>
+                        </td>
+                        <td><a href="ManaLogs?keywords=demo">demo</a></td>
+                        <td><a href="ManaLogs?keywords=Login">Login</a></td>
+                        <td>用户登陆成功.</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td><a href="ManaLogs?keywords=127.0.0.1">127.0.0.1</a></td>
+                        <td>2017-01-13 22:48:13</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input id="ck18" ids="11992" name="ck" type="checkbox" value="true"/>
+                            <input name="ck" type="hidden" value="false"/>
+                        </td>
+                        <td><a href="ManaLogs?keywords=demo">demo</a></td>
+                        <td><a href="ManaLogs?keywords=Login">Login</a></td>
+                        <td>用户登陆成功.</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td><a href="ManaLogs?keywords=127.0.0.1">127.0.0.1</a></td>
+                        <td>2017-01-13 22:47:13</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input id="ck19" ids="11968" name="ck" type="checkbox" value="true"/>
+                            <input name="ck" type="hidden" value="false"/>
+                        </td>
+                        <td><a href="ManaLogs?keywords=demo">demo</a></td>
+                        <td><a href="ManaLogs?keywords=Login">Login</a></td>
+                        <td>用户登陆成功.</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td><a href="ManaLogs?keywords=127.0.0.1">127.0.0.1</a></td>
+                        <td>2017-01-13 22:35:13</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input id="ck30" ids="11909" name="ck" type="checkbox" value="true"/><input name="ck"
+                                                                                                      type="hidden"
+                                                                                                      value="false"/>
+                        </td>
+                        <td><a href="ManaLogs?keywords=huang_jun">huang_jun</a></td>
+                        <td><a href="ManaLogs?keywords=Login">Login</a></td>
+                        <td>用户登陆失败：账号已被锁.</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td><a href="ManaLogs?keywords=127.0.0.1">127.0.0.1</a></td>
+                        <td>2017-01-13 18:45:13</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </form>
+        </div>
+        <!--分页-->
+        <div class="fhui-admin-pagelist">
+            <div id="page"></div>
+        </div>
+    </div>
+</div>
+</body>
+<script src="/static/admin/js/global.js"></script>
+<script src="/static/admin/js/list.js"></script>
+<script>
+    layui.use(['layer', 'laypage', 'common', 'form'], function () {
+        var $ = layui.jquery, layer = layui.layer, laypage = layui.laypage, common = layui.common, form = layui.form();
+        //分页
+        laypage({
+            cont: 'page',
+            pages: 2,
+            curr: function () { //通过url获取当前页，也可以同上（pages）方式获取
+                var page = location.search.match(/page=(\d+)/);
+                return page ? page[1] : 1;
+            }(),
+            jump: function (e, first) { //触发分页后的回调
+                if (!first) { //一定要加此判断，否则初始时会无限刷新
+                    location.href = '?page=' + e.curr;
+                }
+            },
+            skin: true //颜色'#1E9FFF'
+        });
+    });
+</script>
+</html>
