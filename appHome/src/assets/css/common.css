@@ -1,0 +1,229 @@
+@charset "utf-8";
+/* CSS Document */
+
+/* ---------- Responsive accurate ---------- */
+@media (min-width:640px){html{font-size:24px;}}
+@media (min-width:631px) and (max-width:639px){html{font-size:23.66px;}}
+@media (min-width:622px) and (max-width:630px){html{font-size:23.33px;}}
+@media (min-width:613px) and (max-width:621px){html{font-size:23px;}}
+@media (min-width:604px) and (max-width:612px){html{font-size:22.66px;}}
+@media (min-width:595px) and (max-width:603px){html{font-size:22.33px;}}
+@media (min-width:586px) and (max-width:594px){html{font-size:22px;}}
+@media (min-width:577px) and (max-width:585px){html{font-size:21.66px;}}
+@media (min-width:568px) and (max-width:576px){html{font-size:21.33px;}}
+@media (min-width:559px) and (max-width:567px){html{font-size:21px;}}
+@media (min-width:550px) and (max-width:558px){html{font-size:20.66px;}}
+@media (min-width:541px) and (max-width:549px){html{font-size:20.33px;}}
+@media (min-width:533px) and (max-width:540px){html{font-size:20px;}}
+@media (min-width:524px) and (max-width:532px){html{font-size:19.66px;}}
+@media (min-width:515px) and (max-width:523px){html{font-size:19.33px;}}
+@media (min-width:506px) and (max-width:514px){html{font-size:19px;}}
+@media (min-width:497px) and (max-width:505px){html{font-size:18.66px;}}
+@media (min-width:488px) and (max-width:496px){html{font-size:18.33px;}}
+@media (min-width:480px) and (max-width:487px){html{font-size:18px;}}
+@media (min-width:471px) and (max-width:479px){html{font-size:17.66px;}}
+@media (min-width:462px) and (max-width:470px){html{font-size:17.33px;}}
+@media (min-width:453px) and (max-width:461px){html{font-size:17px;}}
+@media (min-width:444px) and (max-width:452px){html{font-size:16.66px;}}
+@media (min-width:435px) and (max-width:443px){html{font-size:16.33px;}}
+@media (min-width:426px) and (max-width:434px){html{font-size:16px;}}
+@media (min-width:417px) and (max-width:425px){html{font-size:15.66px;}}
+@media (min-width:408px) and (max-width:416px){html{font-size:15.33px;}}
+@media (min-width:400px) and (max-width:407px){html{font-size:15px;}}
+@media (min-width:391px) and (max-width:399px){html{font-size:14.66px;}}
+@media (min-width:382px) and (max-width:390px){html{font-size:14.33px;}}
+@media (min-width:374px) and (max-width:381px){html{font-size:14px;}}
+@media (min-width:365px) and (max-width:373px){html{font-size:13.66px;}}
+@media (min-width:356px) and (max-width:364px){html{font-size:13.33px;}}
+@media (min-width:347px) and (max-width:355px){html{font-size:13px;}}
+@media (min-width:338px) and (max-width:346px){html{font-size:12.66px;}}
+@media (min-width:329px) and (max-width:337px){html{font-size:12.44px;}}
+@media (max-width:328px){html{font-size:12px;}}
+img {
+  position: relative;
+}
+
+img::after {
+  content: "";
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  background: url(../img/blank.png) no-repeat center;
+}
+
+.flex {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-flow: row nowrap;
+  -ms-flex-flow: row nowrap;
+  flex-flow: row nowrap;
+}
+
+.flex-v {
+  -webkit-box-orient: vertical;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+.flex-1 {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+}
+
+.flex-2 {
+  -webkit-box-flex: 2;
+  -webkit-flex: 2;
+  -ms-flex: 2;
+  flex: 2;
+}
+.flex-3 {
+    -webkit-box-flex: 3;
+    -webkit-flex: 3;
+    -ms-flex: 3;
+    flex: 3;
+  }
+
+.flex-4 {
+  -webkit-box-flex: 4;
+  -webkit-flex: 4;
+  -ms-flex: 4;
+  flex: 4;
+}
+
+.flex-align-center {
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+  -ms-flex-align: center;
+}
+
+.flex-pack-center {
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+}
+
+.flex-pack-justify {
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  -webkit-justify-content: space-between;
+  justify-content: space-between;
+}
+
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+  color: #a0a0a0;
+}
+
+::-webkit-scrollbar {
+  display: none;
+  /*隐藏滚轮*/
+}
+body,
+div,
+dl,
+dt,
+dd,
+ul,
+ol,
+li,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+input,
+button,
+textarea,
+p,
+blockquote,
+th,
+td,
+form,
+pre {
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+ul,
+li {
+  list-style: none;
+  vertical-align: top;
+}
+.fr {
+  float: right;
+}
+
+.fl {
+  float: left;
+}
+
+.c-hui {
+  color: #b0b1b3 !important;
+}
+
+.c-red {
+  color: red !important;
+}
+
+.c-bai {
+  color: #fff;
+}
+.fs4{
+  font-size: .4rem;
+}
+.fs6 {
+  font-size: .6rem ;
+}
+.fs12 {
+  font-size: .8rem;
+}
+
+.bg-bai{
+  background-color: #fff;
+}
+
+.my-ellipsis {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.my-ellipsis-more {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+body {
+  -webkit-overflow-scrolling: touch;
+  overflow-scrolling: touch;
+  overflow-x: hidden;
+}
+*{
+  -webkit-user-select: none;/*禁用手机浏览器的用户选择功能 */
+  -moz-user-select: none;
+  -webkit-text-size-adjust:100%;  
+}
+input{  
+	background:none;  
+	outline:none;  
+	border:0px;
+}
