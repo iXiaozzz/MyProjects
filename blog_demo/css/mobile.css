@@ -1,0 +1,33 @@
+body {
+    -webkit-box-orient: vertical;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    height: auto;
+    overflow: auto;
+}
+
+.side-bar-left {
+    display: none;
+}
+.side-bar .nav,
+.side-bar .tag-list{display: none;}
+#menu-toggle{
+    display: block;
+    position: absolute;
+    top: 10px;
+    right: 7px;
+    padding: 10px;
+    font-size: 16px;
+    color: rgba(255,255,255,.7);
+}
+
+#menu-checkbox:checked ~ .nav,
+#menu-checkbox:checked ~ .tag-list {
+    display: block;
+}
+
+.main{
+    padding: 2px 5px;
+    overflow-y: visible;
+}

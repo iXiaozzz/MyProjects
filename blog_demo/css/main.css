@@ -1,0 +1,157 @@
+a{
+    color: #fff;
+    text-decoration: none;
+}
+.flex {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+}
+
+.flex-v {
+    -webkit-box-orient: vertical;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+}
+
+.flex-1 {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+}
+.flex-4 {
+    -webkit-box-flex: 4;
+    -webkit-flex: 4;
+    -ms-flex: 4;
+    flex: 4;
+}
+
+.flex-align-center {
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+}
+
+.flex-pack-center {
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+}
+
+.flex-pack-justify {
+    -webkit-box-pack: justify;
+    -webkit-justify-content: space-between;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+}
+
+*{
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+body{
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    min-height: 100vh;
+    max-height: 100vh;
+    overflow-y: hidden;
+    line-height: 1.7;
+    color: #fff;
+    background-color: rgba(0,0,0,.7);
+}
+/*首页的样式*/
+.side-bar{
+    padding: 10px 40px 10px 20px;
+}
+.side-bar > *{
+    padding: 15px 0;
+}
+
+.side-bar .nav a.item,
+.side-bar .tag-list a.item{
+    display: block;
+    padding: 5px 0;
+    color: #888;
+    -webkit-transition: color .2s;
+    -moz-transition: color .2s;
+    -ms-transition: color .2s;
+    -o-transition: color .2s;
+    transition: color .2s;
+}
+.side-bar .nav a.item:hover,
+.side-bar .tag-list a.item:hover{
+    color: #eee;
+}
+.side-bar .header{text-align: center;}
+.side-bar .header a.logo,
+.side-bar .header .intro{
+    text-align: left;
+    padding: 4px 5px;
+}
+.side-bar .header a.logo{
+    display: inline-block;
+    font-size: 32px;
+    border:4px solid #fff;
+}
+.side-bar .header .intro{
+    text-indent: 2em;
+}
+.side-bar .nav a.item{
+    font-size: 18px;
+}
+
+.main {
+    /*height: 100%;*/
+    padding: 30px;
+    color: #000;
+    background-color: #eee;
+    overflow-y: scroll;
+}
+
+.main .article-list .item{
+    margin-top: 15px;
+}
+.main .article-list .item .title
+,.main .article-list .item .status
+,.main .article .title{
+    padding-bottom: 8px;
+}
+.main .article-list .item .title a
+,.main .article .title{
+    color: #000;
+    font-size: 18px;
+    font-weight: 800;
+}
+.main .article-list .item .status
+,.main .article .status{
+     color: #888;
+     padding-bottom: 8px;
+ }
+
+.main .article-list .item .content
+,.main .article .content{
+    text-indent: 2em;
+}
+
+#menu-toggle
+,#menu-checkbox{display: none;}
+
+
+/*文章详情页的样式*/
+
+.main .article .title
+,.main .article .status{
+    text-align: center;
+}
+.main .article .title{
+    font-size: 26px;
+}
