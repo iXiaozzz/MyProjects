@@ -1,0 +1,226 @@
+.main {
+    position: relative;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 0 0 .5rem 0;
+}
+
+.bg-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* min-width: 1000px; */
+    z-index: -10;
+    zoom: 1;
+    /* background-color: #fff;
+    background-repeat: no-repeat;
+    background-size: cover;
+    -webkit-background-size: cover;
+    -o-background-size: cover;
+    background-position: center 0; */
+}
+
+.main .blank {
+    height: 4rem;
+}
+
+.main .content-container {
+    position: absolute;
+    bottom: .5rem;
+    left: 0;
+    padding: 0 1rem;
+    transition: position 2s;
+    -moz-transition: position 2s;
+    /* Firefox 4 */
+    -webkit-transition: position 2s;
+    /* Safari 和 Chrome */
+    -o-transition: position 2s;
+    /* Opera */
+}
+
+.main .content-container>div.page-width {
+    display: table;
+    /*border-spacing: 20px; !* td间的间距*!*/
+}
+
+.main .content-container>div.page-width>div {
+    display: table-cell;
+    flex: 1;
+    /*width: 1000px; !*设置很大的宽度，table自动平分宽度 *!*/
+    border-radius: 5px;
+    /*这里设置圆角就正常了*/
+}
+
+.main .content-container .ctitle {
+    font-size: .3rem;
+    font-weight: 600;
+}
+
+.main .content-container .cdesc {
+    /*font-size: .3rem;*/
+    line-height: .5rem;
+}
+
+.main .content-container .cdesc ul li i.layui-icon,
+.main .content-container .cdesc,
+.main .content-container .cdesc ul li a div {
+    font-size: .22rem !important;
+}
+
+.main .content-container .cdesc ul li {
+    cursor: pointer;
+}
+
+.main .content-container .cdesc ul li a:hover {
+    color: #fff;
+}
+
+.main .content-container .cdesc.company-intro {
+    text-indent: 2em;
+    font-family: '宋体';
+    color: #3F3F3F;
+    /*background-color: #ececec;*/
+    /*border: 1px solid #ccc;*/
+}
+
+.main .content-container .citem {
+    overflow: hidden;
+    width: 261px;
+    -webkit-transition: background-color 1s;
+    -moz-transition: background-color 1s;
+    -ms-transition: background-color 1s;
+    -o-transition: background-color 1s;
+    transition: background-color 1s;
+    color: #fff;
+    background-color: rgba(206, 206, 206, .75);
+}
+
+.main .content-container .citem::after {
+    padding-top: 10%;
+    content: '';
+}
+
+.main .content-container .citem:hover {
+    background-color: rgba(126, 192, 238, .75);
+}
+
+.main .content-container .citem>dl {
+    height: 2.9rem;
+    padding: .1rem;
+}
+
+.main .content-container .citem>dl dd {
+    color: #333;
+}
+
+.main .content-container .citem .citem-img {
+    width: 100%;
+    max-width: 100%;
+    height: 3rem;
+    -webkit-transition: transform, -webkit-transform 2.5s;
+    -moz-transition: transform, -webkit-transform 2.5s;
+    -ms-transition: transform, -webkit-transform 2.5s;
+    -o-transition: transform, -webkit-transform 2.5s;
+    transition: transform, -webkit-transform 2.5s;
+}
+
+.main .content-container .citem .citem-img-box {
+    display: block;
+    overflow: hidden;
+    width: 100%;
+    max-width: 100%;
+}
+
+.main .content-container .citem .citem-img:hover {
+    -webkit-transform: scale(1.1);
+    -moz-transform: scale(1.1);
+    -ms-transform: scale(1.1);
+    -o-transform: scale(1.1);
+    transform: scale(1.1);
+}
+
+@media screen and (min-width: 768px) {
+    body {
+        min-width: 1200px;
+        min-height: 100vh;
+        display: box;
+        /* OLD - Android 4.4- */
+        display: -webkit-box;
+        /* OLD - iOS 6-, Safari 3.1-6 */
+        display: -moz-box;
+        /* OLD - Firefox 19- (buggy but mostly works) */
+        display: -ms-flexbox;
+        /* TWEENER - IE 10 */
+        display: -webkit-flex;
+        /* NEW - Chrome */
+        display: flex;
+        /* NEW, Spec - Opera 12.1, Firefox 20+ */
+        /* 09版 */
+        -webkit-box-orient: vertical;
+        /* 12版 */
+        -webkit-flex-direction: column;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        -moz-flex-direction: column;
+        -o-flex-direction: column;
+    }
+   
+    .main {
+        -webkit-box-flex: 1; /* OLD - iOS 6-, Safari 3.1-6 */
+        /*width: 20%;            !* For old syntax, otherwise collapses. *!*/
+        -webkit-flex: 1; /* Chrome */
+        -moz-box-flex: 1; /* OLD - Firefox 19- */
+        -ms-flex: 1; /* IE 10 */
+        flex: 1; /* NEW, Spec - Opera 12.1, Firefox 20+ */
+    }
+    .main .page-width {
+        max-width: 1400px !important;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    html,
+    body {
+        min-width: auto;
+    }
+    .main {
+        height: auto;
+        padding: 0;
+        background: none;
+    }
+    .main .blank {
+        display: none;
+    }
+    .main .content-container {
+        position: relative;
+        bottom: 0;
+        left: 0;
+        /*padding: 0 1rem;*/
+    }
+    .main .content-container>div.layui-col-space30>div {
+        padding: 1px !important;
+    }
+    .main .content-container .citem {
+        width: 100%;
+    }
+    .main .content-container .citem>dl {
+        height: auto !important;
+    }
+    .main .content-container .citem:hover {
+        background-color: #ccc !important;
+    }
+    .main .content-container .citem .citem-img {
+        height: auto;
+    }
+    .main .content-container .ctitle {
+        font-size: .4rem !important;
+        font-weight: 600;
+    }
+    .main .content-container .cdesc ul li i.layui-icon,
+    .main .content-container .cdesc {
+        font-size: .3rem !important;
+    }
+}
