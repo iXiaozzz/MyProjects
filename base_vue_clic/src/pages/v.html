@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <video controls height="300" width="100%" id="myvideo" src="ad.mp4">
+    <!-- <source src="./ad.mp4" type="video/mp4" /> -->
+  </video>
+</body>
+<script>
+var init_num=0;
+var myvideo=document.getElementById('myvideo');
+  // myvideo.setAttribute("src",videoUrl);
+  
+  myvideo.addEventListener('play',function(){
+      if(init_num==0){
+          init_num++;
+          console.log(init_num)
+          // videoPlayNum(videoID);
+      }
+ });
+ myvideo.addEventListener('pause',function(){
+   if(init_num){
+    init_num--;
+    console.log(init_num)
+   }
+ })
+</script>
+</html>
