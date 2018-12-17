@@ -1,4 +1,4 @@
-# demo-vzz
+# 基础模板 vue-cli
 
 > A Vue.js project
 
