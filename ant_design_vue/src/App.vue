@@ -15,12 +15,12 @@ export default {
     , HelloWorld
     , FullPage
   },
-  data(){
+  data () {
     return {
       pageType: this.$store.getters.pageType
     }
   },
-  mounted(){
+  mounted () {
     // console.log(this.$store.getters)
   }
 }
@@ -31,12 +31,9 @@ export default {
 @import "@/style/mixin.scss";
 
 #app {
-  // font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  height: 100%;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  /* text-align: center;
-  color: #2c3e50;
-  margin-top: 60px; */
   font-size: $fz_root;
 }
 </style>

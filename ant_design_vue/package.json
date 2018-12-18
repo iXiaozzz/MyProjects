@@ -1,5 +1,5 @@
 {
-  "name": "demo-zzz",
+  "name": "admin",
   "version": "1.0.0",
   "description": "A Vue.js project",
   "author": "zzz",
@@ -19,6 +19,7 @@
     "mockjs": "^1.0.1-beta3",
     "node-sass": "^4.10.0",
     "normalize.css": "^8.0.0",
+    "nprogress": "^0.2.0",
     "vue": "^2.5.2",
     "vue-router": "^3.0.1",
     "vuex": "^3.0.1"

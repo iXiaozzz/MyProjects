@@ -16,14 +16,18 @@ const app = {
   },
   actions: {
     jianCount({
-                commit
-              }, data) {
+      commit
+    }, data) {
       commit('JIAN_COUNT', data)
     },
-    addCount({commit}, data) {
+    addCount({
+      commit
+    }, data) {
       commit('ADD_COUNT', data)
     },
-    updatePageType({commit}, data) {
+    updatePageType({
+      commit
+    }, data) {
       commit('UPDATE_PAGETYPE', data);
     }
   }

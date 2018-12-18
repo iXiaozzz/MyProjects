@@ -11,9 +11,14 @@ const Layout = r => require.ensure([], () => r(_crmimport('layout/index')));
 const Home = r => require.ensure([], () => r(_crmimport('home/index')));
 const Add = r => require.ensure([], () => r(_crmimport('home/components/Add')));
 const GetData = r => require.ensure([], () => r(_crmimport('getData/index')));
+//登录页面
+const Login = r => require.ensure([], () => r(_crmimport('login/Index')));
 
 // 后台页面
 const Admin = r => require.ensure([], () => r(_crmimport('admin/Index')));
+const Test1 = r => require.ensure([], () => r(_crmimport('test1/Index')));
+const Test2 = r => require.ensure([], () => r(_crmimport('test2/Index')));
+const Test3 = r => require.ensure([], () => r(_crmimport('test3/Index')));
 
 Vue.use(VueRouter);
 
@@ -56,14 +61,58 @@ export const constantRouterMap = [{
       pageType: 'Layout'
     }
   },
+  // 登录
+  {
+    name: 'login',
+    path: '/login',
+    component: Login,
+    meta: {
+      pageType: '',
+      title: '登录'
+    }
+  },
   {
     name: 'admin',
     path: '/admin',
     component: Admin,
     meta: {
       pageType: ''
-    }
-  },
+    },
+    children: [{
+        path: '',
+        component: Test1,
+        meta: {
+          pageType: '',
+          title: 'test1'
+        },
+      },
+      {
+        name: 'test1',
+        path: '/test1',
+        component: Test1,
+        meta: {
+          pageType: '',
+          title: 'test1'
+        }
+      }, {
+        name: 'test2',
+        path: '/test2',
+        component: Test2,
+        meta: {
+          pageType: '',
+          title: 'test2'
+        }
+      }, {
+        name: 'test3',
+        path: '/test3',
+        component: Test3,
+        meta: {
+          pageType: '',
+          title: 'test3'
+        }
+      }
+    ]
+  }
 
 ];
 
